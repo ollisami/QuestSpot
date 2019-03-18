@@ -1,0 +1,16 @@
+{
+  "name": "questspot_backend",
+  "version": "0.0.1",
+  "description": "QuestSpot Backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sami-Pekka Ollila",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ollisami/QuestSpot/issues"
+  },
+  "homepage": "https://github.com/ollisami/QuestSpot#readme"
+}
