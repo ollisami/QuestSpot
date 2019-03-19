@@ -7,7 +7,8 @@
 | :----:|:-----| :-----| :-----|:-----|
 | id | String | 1 | true |Identifier for the profile |
 | username | String | 1 | true | Username for the profile |
-| password | String | 1 | true | Decrypted password for the profile |
+| passwordHash | String | 1 | true | Decrypted password for the profile |
+| name | String | 1 | true | Display name for the studio |
 | address | String | 1 | true | Street address for the studio |
 | postalCode | String | 1 | true | Postal code for the studio |
 | city | String | 1 | true | City for the studio |
@@ -22,7 +23,8 @@
 | :----:|:-----| :-----| :-----|:-----|
 | id | String | 1 | true | Identifier for the profile |
 | username | String | 1 | true | Username for the profile |
-| password | String | 1 | true | Decrypted password for the profile |
+| passwordHash | String | 1 | true | Decrypted password for the profile |
+| name | String | 1 | true | Display name for the artist |
 | address | String | 1 | true | Street address for the artist |
 | postalCode | String | 1 | true | Postal code for the artist |
 | city | String | 1 | true | City for the artist |
@@ -31,7 +33,5 @@
 | images | String [ ] | 0...n | false | URL:s to images linked to the artist |
 | tags | String [ ] | 0...n | false | Tags linked to the artist |ta
 
-Käyttäjiin liitetyt kuvat (images) tallennetaan tietotakantaan String tyyppisinä osoitteina, josta kuvat haetaan näytettäessä. 
-Tarkoituksena on projektin edetessä siirtyä käyttämään instagramin rajapintaa kuvien näyttämiseen. 
-
-
+Käyttäjiin liitetyt kuvat (images) tallennetaan tietotakantaan String tyyppisinä osoitteina, josta kuvat haetaan näytettäessä.
+Tarkoituksena on projektin edetessä siirtyä käyttämään instagramin rajapintaa kuvien näyttämiseen.
