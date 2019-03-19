@@ -1,0 +1,13 @@
+POST http://localhost:3003/api/users/studios
+Content-Type: application/json
+
+{
+    "username": "test",
+    "password": "test",
+    "name": "test",
+    "address": "test address",
+    "postalCode": "12345",
+    "city": "test city",
+    "country": "Finland"
+}
+###
