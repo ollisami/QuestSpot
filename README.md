@@ -1,7 +1,7 @@
 # QuestSpot
 
 QuestSpot FullStack-projekti  
-**Tekijät:** Sami-Pekka Ollila, Sami Nurmivaara, xxx, xxx
+**Tekijät:** Sami-Pekka Ollila, Sami Nurmivaara, Topi Laanti, xxx
 
 ## Kuvaus:
 Tehdään responsiivinen verkkosivu, jonka tarkoitus on helpottaa kiertävien tatuointiartistien vierailuja.
