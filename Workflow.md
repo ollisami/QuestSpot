@@ -1,9 +1,23 @@
 # Workflow
-## Uuden taskin luominen:
-- Luo Trelloon uusi kortti joko TODO-Frontend tai TODO-Backend kolumniin, tehtävästä riippuen
-- Anna kortille mahdollisimman tarkka kuvaus
+## Creating a new issue/task:
 
-## Taskin toteuttaminen:
+- On GitHub  navigate to "Issues" tab and press "New issue" -button.
+- Give issue AT LEAST the following information:
+  - Title: title of the issue eg. "Update header H1 style"
+  - Label: frontend/backend/devops and more precise labels if applicable
+  - Projects: Tag the issue as related to QuestSpot -project.
+  - Other fields are optional, if you instantly start to work on the said issue you can assign yourself.
+- Press "Submit new issue"
+
+## Doing a task:
+
+- On GitHub navigate to "Projects" -> "QuestSpot"
+- Move desired task from "To Do" to "In Progress"
+- Click the task card and assign yourself to it
+- Update labels if needed
+- On your machine run **git status** and make sure it returns "nothing to commit, working tree clean"
+- Run **git pull**
+- Create new branch and checkout it with **git checkout -b xxx/yyy** where xxx is either frontend/backend/devops and yyy is a short descriptive name in the style of the issue this feature branch is related to eg. frontend/h1stylefix
 - Valitse Trello:ssa haluamasi taski, siirrä se "In Development" sarakkeeseen ja aseta itsesi jäseneksi kortille.
 - Varmista että olet master branchissa, eikä koneellasi ole mitään localeja muutoksia (**git status** sanoo "nothing to commit, working tree clean")
 - Pullaa uusin master (**git pull**)
