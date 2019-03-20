@@ -29,6 +29,7 @@
 - Press "Compare & Pull request"
 ![pullrequest](workflow_images/pull_request.png)
 - Fill in the pull request and reference the issue ticket number which your pull request is fixing. eg "This fixes issue #3" if the ticket number is 3.
+![reference](workflow_images/reference.png)
 - Move the issue in the projects -> questspot to the column "Review and testing in progress"
 - Mark your spent hours in your personal hour booking.
 
