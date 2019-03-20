@@ -44,4 +44,5 @@
 - Otherwise mark "Approve", leave a comment and submit your review
 - After everything works as intended and you feel the code is up to standards, finish the review and press "Merge pull request"
 ![reviewpage](workflow_images/review_page.png)
+- After merge is done press "delete branch" to remove the now redundant branch
 - Mark your spent hours in your personal hour booking.
