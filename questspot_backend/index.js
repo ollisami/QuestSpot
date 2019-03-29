@@ -1,10 +1,9 @@
+const app = require('./app')
 const http = require('http')
+const config = require('./utils/config')
 
-const app = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' })
-  res.end('Hello World')
-});
+const server = http.createServer(app)
 
-const port = 3001
-app.listen(port)
-console.log(`Server running on port ${port}`)
+server.listen(config.PORT, () => {
+  console.log(`Server running on port ${config.PORT}`)
+})
