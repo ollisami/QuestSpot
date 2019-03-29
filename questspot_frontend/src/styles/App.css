@@ -1,0 +1,23 @@
+.container {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+    font-size: 6vw;
+    background-color: #425346;
+  }
+
+.main-content {
+    padding-top: 50px;
+    background-color: #f0f0db;
+    border: 3px solid #b5ad9c;
+    border-radius: 25px;
+}
+
+.top-navi {
+    display: flex;
+    justify-content: center;
+}
+
+.App-logo {
+    height: 30vmin;
+    pointer-events: none;
+  }

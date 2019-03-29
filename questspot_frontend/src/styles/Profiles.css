@@ -1,0 +1,16 @@
+.profile-name {
+    font-size: 6vw;
+    margin-left: 0.5em;
+    text-align: center;  }
+
+.profile-city {
+    font-size: 4vw;
+    margin-left: 0.5em;
+    text-align: center;
+  }
+
+.bottom-border {
+  margin-bottom: 1em;
+  margin-top: 0.5em;
+  border-top: 3px solid #b5ad9c;
+}

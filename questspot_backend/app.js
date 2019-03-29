@@ -4,8 +4,10 @@ const bodyParser = require('body-parser')
 const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors')
-const studiosRouter = require('./controllers/studios')
 const logger = require('./utils/logger')
+
+const profilesRouter = require('./controllers/profiles')
+const studiosRouter = require('./controllers/studios')
 
 logger.info('connecting to', config.MONGODB_URI)
 
@@ -19,6 +21,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true })
 
 app.use(cors())
 app.use(bodyParser.json())
-app.use('/api/users/studios', studiosRouter)
+app.use('/api/profiles', profilesRouter)
+app.use('/api/profiles/studios', studiosRouter)
 
 module.exports = app
