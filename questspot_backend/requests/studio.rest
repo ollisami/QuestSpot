@@ -1,13 +1,18 @@
-POST http://localhost:3003/api/users/studios
+POST http://localhost:3003/api/profiles/studios
 Content-Type: application/json
 
 {
-    "username": "test",
+    "username": "Jukka",
     "password": "test",
-    "name": "test",
+    "name": "Jukka Jokinen",
     "address": "test address",
     "postalCode": "12345",
-    "city": "test city",
-    "country": "Finland"
+    "city": "Göteborg",
+    "country": "Sweden",
+    "images": [
+        "https://source.unsplash.com/random/1080x1080",
+        "https://source.unsplash.com/random/1080x1080"
+    ],
+    "tags": ["testTag", "testTag2"]
 }
 ###
