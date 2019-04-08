@@ -1,0 +1,2 @@
+### GET all profiles
+GET http://localhost:3003/api/tags/

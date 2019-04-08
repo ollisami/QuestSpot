@@ -1,12 +1,32 @@
 
-### Add new studio
-POST http://localhost:3003/api/profiles/studios
+### Add new artist
+POST http://localhost:3003/api/profiles/artists
+Content-Type: application/json
+
+{
+    "username": "Arttu",
+    "password": "test",
+    "name": "Artisti Arttu",
+    "address": "test address",
+    "postalCode": "12345",
+    "city": "Helsinki",
+    "country": "Finland",
+    "email": "test@test.fi",
+    "images": [
+        "https://source.unsplash.com/random/1080x1080",
+        "https://source.unsplash.com/random/1080x1080"
+    ],
+    "tags": ["testTag", "testTag2"]
+}
+### Edit artist
+
+PUT http://localhost:3003/api/profiles/artists/5cab2b0c70f3fd6420126d03
 Content-Type: application/json
 
 {
     "username": "Pekka",
     "password": "test",
-    "name": "Pekan Studio",
+    "name": "Artisti pekka päivitetty",
     "address": "test address",
     "postalCode": "12345",
     "city": "Göteborg",
@@ -18,29 +38,9 @@ Content-Type: application/json
     ],
     "tags": ["testTag", "testTag2"]
 }
-### Edit studio
+### Remove artist
 
-PUT http://localhost:3003/api/profiles/studios/5cab2339e320fa26c8701685
-Content-Type: application/json
-
-{
-    "username": "Pekka",
-    "password": "test",
-    "name": "Pekan studio päivitetty",
-    "address": "test address",
-    "postalCode": "12345",
-    "city": "Göteborg",
-    "country": "Sweden",
-    "email": "test@test.fi",
-    "images": [
-        "https://source.unsplash.com/random/1080x1080",
-        "https://source.unsplash.com/random/1080x1080"
-    ],
-    "tags": ["testTag", "testTag2"]
-}
-### Remove studio
-
-DELETE http://localhost:3003/api/profiles/studios/5cab2339e320fa26c8701685
+DELETE http://localhost:3003/api/profiles/artists/5cab2a00532b825e140d783a
 Content-Type: application/json
 
 ###
