@@ -4,19 +4,19 @@ POST http://localhost:3003/api/profiles/artists
 Content-Type: application/json
 
 {
-    "username": "Arttu",
+    "username": "Uniikki",
     "password": "test",
-    "name": "Artisti Arttu",
+    "name": "Uniikki",
     "address": "test address",
     "postalCode": "12345",
-    "city": "Helsinki",
+    "city": "Pori",
     "country": "Finland",
     "email": "test@test.fi",
     "images": [
         "https://source.unsplash.com/random/1080x1080",
         "https://source.unsplash.com/random/1080x1080"
     ],
-    "tags": ["testTag", "testTag2"]
+    "tags": ["uniikki"]
 }
 ### Edit artist
 

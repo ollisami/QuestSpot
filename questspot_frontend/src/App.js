@@ -30,7 +30,6 @@ const App = (props) => {
             <Notification/>
           </div>
           <div className="main-content">
-            <p>List of profiles:</p>
             <Route path="/profiles" render={() => <Profiles profiles={profiles} />} />
           </div>
         </div>
