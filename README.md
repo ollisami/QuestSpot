@@ -1,7 +1,8 @@
 # QuestSpot
 
 QuestSpot FullStack-projekti  
-**Tekijät:** Sami-Pekka Ollila, Sami Nurmivaara, Topi Laanti, Viktor Teodosin
+**Tekijät:** Sami-Pekka Ollila, Sami Nurmivaara, Topi Laanti, Viktor Teodosin  
+**Tuntikirjanpito:** https://github.com/ollisami/QuestSpot/wiki/Tuntikirjanpito
 
 ## Kuvaus:
 Tehdään responsiivinen verkkosivu, jonka tarkoitus on helpottaa kiertävien tatuointiartistien vierailuja.
