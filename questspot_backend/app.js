@@ -1,13 +1,15 @@
-const config = require('./utils/config')
-const express = require('express')
+const config     = require('./utils/config')
+const express    = require('express')
 const bodyParser = require('body-parser')
-const app = express()
-const mongoose = require('mongoose')
-const cors = require('cors')
-const logger = require('./utils/logger')
+const app        = express()
+const mongoose   = require('mongoose')
+const cors       = require('cors')
+const logger     = require('./utils/logger')
 
 const profilesRouter = require('./controllers/profiles')
-const studiosRouter = require('./controllers/studios')
+const tagsRouter     = require('./controllers/tags')
+const studiosRouter  = require('./controllers/studios')
+const artistRounter  = require('./controllers/artists')
 
 logger.info('connecting to', config.MONGODB_URI)
 
@@ -22,6 +24,8 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true })
 app.use(cors())
 app.use(bodyParser.json())
 app.use('/api/profiles', profilesRouter)
+app.use('/api/tags', tagsRouter)
 app.use('/api/profiles/studios', studiosRouter)
+app.use('/api/profiles/artists', artistRounter)
 
 module.exports = app

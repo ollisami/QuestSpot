@@ -1,7 +1,7 @@
 const mongoose        = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
-const studioSchema = mongoose.Schema({
+const artistSchema = mongoose.Schema({
   username: {
     type: String,
     unique: true
@@ -13,18 +13,16 @@ const studioSchema = mongoose.Schema({
   city: String,
   country: String,
   email: String,
-  artists: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Artist'
-    }
-  ],
+  studio: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Studio'
+  },
   images: [],
   tags: []
 })
 
-studioSchema.plugin(uniqueValidator)
-studioSchema.set('toJSON', {
+artistSchema.plugin(uniqueValidator)
+artistSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -33,6 +31,6 @@ studioSchema.set('toJSON', {
   }
 })
 
-const Studio = mongoose.model('Studio', studioSchema)
+const Artist = mongoose.model('Artist', artistSchema)
 
-module.exports = Studio
+module.exports = Artist

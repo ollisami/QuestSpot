@@ -1,6 +1,12 @@
 const studioRouter = require('express').Router()
-const Studio = require('../models/studio')
-const bcrypt = require('bcrypt')
+const Studio       = require('../models/studio')
+const bcrypt       = require('bcrypt')
+
+const getPasswordHash = async (password) => {
+  const saltRounds = 10
+  const passwordHash = await bcrypt.hash(password, saltRounds)
+  return passwordHash
+}
 
 studioRouter.get('/', async (request, response) => {
   const studios = await Studio.find({})
@@ -16,8 +22,7 @@ studioRouter.post('/', async (request, response) => {
       response.send()
       return
     }
-    const saltRounds = 10
-    const passwordHash = await bcrypt.hash(body.password, saltRounds)
+    const passwordHash = await getPasswordHash(body.password)
 
     const studio = new Studio({
       username: body.username,
@@ -35,6 +40,34 @@ studioRouter.post('/', async (request, response) => {
     const savedStudio = await studio.save()
 
     response.json(savedStudio)
+  } catch (exception) {
+    response.status(400).send({ error: exception.message })
+  }
+})
+
+studioRouter.put('/:id', async (request, response) => {
+  const body = request.body
+  try {
+    const { password, ...studioProps } = body
+    const passwordHash  = await getPasswordHash(password)
+    const studio        = { ...studioProps, passwordHash: passwordHash }
+    const updatedStudio = await Studio.findByIdAndUpdate(request.params.id, studio, { new: true })
+    response.json(updatedStudio.toJSON())
+  } catch (exception) {
+    console.log(exception.message)
+    response.status(400).send({ error: exception.message })
+  }
+})
+
+studioRouter.delete('/:id', async (request, response) => {
+  try {
+    const studio = await Studio.findById(request.params.id)
+    if (studio) {
+      await studio.remove()
+      response.status(204).end()
+    } else {
+      response.status(401).send({ error: 'Studio removing failed' })
+    }
   } catch (exception) {
     response.status(400).send({ error: exception.message })
   }
