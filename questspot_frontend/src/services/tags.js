@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/profiles'
+const baseUrl = '/api/tags'
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)
