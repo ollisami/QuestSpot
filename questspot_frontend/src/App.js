@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import {
   BrowserRouter as Router,
-  Route, Link
+  Route
 } from 'react-router-dom'
 
 import Notification from './components/Notification'
@@ -13,7 +13,8 @@ import { setNotification } from './reducers/notificationReducer'
 import { initializeProfiles } from './reducers/profilesReducer'
 
 import './styles/App.css'
-import logo from './resources/logo.png';
+import logo from './resources/logo.png'
+
 const App = (props) => {
 
   const { profiles } = props
@@ -22,8 +23,8 @@ const App = (props) => {
     props.initializeProfiles()
   },[])
 
-  const profileById = (id) => 
-    profiles.find(prof => prof.id === id)
+  const profileByUsername = (username) => 
+    profiles.find(prof => prof.username === username)
 
 
   return (
@@ -37,8 +38,8 @@ const App = (props) => {
           <div className="main-content">
             <Route exact path="/profiles/" render={() => 
               <Profiles profiles={profiles} />} />
-            <Route path="/profiles/:id" render={({match}) => 
-              <Profile profile={profileById(match.params.id)} />} />
+            <Route path="/profiles/:username" render={({match}) => 
+              <Profile profile={profileByUsername(match.params.username)} />} />
           </div>
         </div>
       </Router>

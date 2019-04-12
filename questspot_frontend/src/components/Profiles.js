@@ -55,7 +55,7 @@ const Profiles = ({ profiles }) => {
             />
           }
           <div className="profile-name">
-              <Link to={`/profiles/${profile.id}`}>{profile.name}</Link>
+              <Link to={`/profiles/${profile.username}`}>{profile.name}</Link>
           </div>
           <div className="profile-city">
               {profile.city}, {profile.country}
