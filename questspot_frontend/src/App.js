@@ -7,6 +7,7 @@ import {
 
 import Notification from './components/Notification'
 import Profiles from './components/Profiles'
+import Profile from './components/Profile'
 
 import { setNotification } from './reducers/notificationReducer'
 import { initializeProfiles } from './reducers/profilesReducer'
@@ -21,6 +22,10 @@ const App = (props) => {
     props.initializeProfiles()
   },[])
 
+  const profileById = (id) => 
+    profiles.find(prof => prof.id === id)
+
+
   return (
     <div className="container">
       <Router>
@@ -30,8 +35,10 @@ const App = (props) => {
             <Notification/>
           </div>
           <div className="main-content">
-            <p>List of profiles:</p>
-            <Route path="/profiles" render={() => <Profiles profiles={profiles} />} />
+            <Route exact path="/profiles/" render={() => 
+              <Profiles profiles={profiles} />} />
+            <Route path="/profiles/:id" render={({match}) => 
+              <Profile profile={profileById(match.params.id)} />} />
           </div>
         </div>
       </Router>

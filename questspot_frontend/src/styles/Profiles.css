@@ -9,6 +9,11 @@
     text-align: center;
   }
 
+.profile-info {
+  font-size: 2vw;
+  text-align: left;
+}
+
 .bottom-border {
   margin-bottom: 1em;
   margin-top: 0.5em;
