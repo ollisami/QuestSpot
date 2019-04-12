@@ -9,6 +9,11 @@
     text-align: center;
   }
 
+.profile-info {
+  font-size: 3vw;
+  text-align: left;
+}
+
 .bottom-border {
   margin-bottom: 1em;
   margin-top: 0.5em;
@@ -18,8 +23,6 @@
 .react-tags {
   position: relative;
   padding: 6px 6px 0 6px;
-  border-top: 1px solid #D1D1D1;
-  border-radius: 1px;
 
   /* shared font styles */
   font-size: 1em;
@@ -142,4 +145,37 @@
 .react-tags__suggestions li.is-disabled {
   opacity: 0.5;
   cursor: auto;
+}
+
+.back-button {
+  padding: 0 0.5em;
+}
+
+.round-button {
+  border-radius: 150px;
+  border: 0.1em solid;
+  height: 2em;
+  width: 2em;
+  font-size: 1.3em;
+  line-height: 0px;
+}
+
+.flex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 1em;
+}
+.flex-grid .col {
+  flex: 1 1 5em;
+}
+
+.flex-grid .col-button {
+  flex: 1 1 50px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 0.3em;
+}
+
+.btn {
+  padding: 0;
 }

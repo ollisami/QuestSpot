@@ -3,6 +3,7 @@ import ReactTags from 'react-tag-autocomplete'
 import tagService from '../services/tags'
 import ImageLoader from './ImageLoader'
 import '../styles/Profiles.css'
+import {Link} from 'react-router-dom'
 
 
 const Profiles = ({ profiles }) => {
@@ -43,6 +44,28 @@ const Profiles = ({ profiles }) => {
     )
   }
 
+  const mapping = () => {
+    return (
+      filteredProfiles().map(profile =>
+        <div key={profile.id}>
+          {profile.images &&
+            <ImageLoader
+              imgUrl={profile.images[0]}
+              altText={profile.name}
+            />
+          }
+          <div className="profile-name">
+              <Link to={`/profiles/${profile.username}`}>{profile.name}</Link>
+          </div>
+          <div className="profile-city">
+              {profile.city}, {profile.country}
+          </div>
+          <div className="bottom-border" />
+        </div>
+      )
+    )
+  }
+
   return (
     <div>
       <ReactTags
@@ -53,23 +76,7 @@ const Profiles = ({ profiles }) => {
         autofocus={false}
         placeholder={'Search'}
       />
-      {filteredProfiles().map(profile =>
-        <div key={profile.id}>
-          {profile.images &&
-            <ImageLoader
-              imgUrl={profile.images[0]}
-              altText={profile.name}
-            />
-          }
-          <div className="profile-name">
-              {profile.name}
-          </div>
-          <div className="profile-city">
-              {profile.city}, {profile.country}
-          </div>
-          <div className="bottom-border" />
-        </div>
-      )}
+      <div>{mapping()}</div>
     </div>
   )
 }
