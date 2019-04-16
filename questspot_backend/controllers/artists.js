@@ -1,5 +1,6 @@
 const artistRouter = require('express').Router()
 const Artist       = require('../models/artist')
+const Studio       = require('../models/studio')
 const bcrypt       = require('bcrypt')
 
 const getPasswordHash = async (password) => {
@@ -16,8 +17,8 @@ artistRouter.get('/', async (request, response) => {
 artistRouter.post('/', async (request, response) => {
   try {
     const body = request.body
-
-    if (body.username.length < 3 || body.password.length < 3) {
+    const studioProfile = await Studio.findOne({ username: body.username })
+    if (studioProfile || body.username.length < 3 || body.password.length < 3) {
       response.status(400).send({ error: 'invalid username or password' })
       response.send()
       return

@@ -5,6 +5,7 @@ import {
   Route
 } from 'react-router-dom'
 
+import Authentication from './components/Authentication'
 import Notification from './components/Notification'
 import Profiles from './components/Profiles'
 import Profile from './components/Profile'
@@ -34,6 +35,7 @@ const App = (props) => {
           <div className="top-navi">
             <img src={logo} className="App-logo" alt="logo" />
             <Notification/>
+            <Authentication/>
           </div>
           <div className="main-content">
             <Route exact path="/profiles/" render={() => 
@@ -49,6 +51,7 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     profiles: state.profiles
   }
 }

@@ -4,7 +4,7 @@ POST http://localhost:3003/api/profiles/artists
 Content-Type: application/json
 
 {
-    "username": "Uniikki",
+    "username": "Pekka",
     "password": "test",
     "name": "Uniikki",
     "address": "test address",
