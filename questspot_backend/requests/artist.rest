@@ -4,9 +4,9 @@ POST http://localhost:3003/api/profiles/artists
 Content-Type: application/json
 
 {
-    "username": "Pekka",
+    "username": "testArtist",
     "password": "test",
-    "name": "Uniikki",
+    "name": "test artist",
     "address": "test address",
     "postalCode": "12345",
     "city": "Pori",
@@ -16,7 +16,7 @@ Content-Type: application/json
         "https://source.unsplash.com/random/1080x1080",
         "https://source.unsplash.com/random/1080x1080"
     ],
-    "tags": ["uniikki"]
+    "tags": ["blackwork"]
 }
 ### Edit artist
 
