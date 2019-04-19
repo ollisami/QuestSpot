@@ -5,7 +5,6 @@ import {
   Route
 } from 'react-router-dom'
 
-import Authentication from './components/Authentication'
 import Notification from './components/Notification'
 import Profiles from './components/Profiles'
 import Profile from './components/Profile'

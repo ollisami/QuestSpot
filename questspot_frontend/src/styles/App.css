@@ -20,11 +20,13 @@ body {
     background-color: #f0f0db;
     border: 3px solid #b5ad9c;
     border-radius: 25px;
+    min-height: 400px;
 }
 
 .top-navi {
     display: flex;
     justify-content: center;
+    margin-top: 50px;
 }
 
 .App-logo {

@@ -9,10 +9,13 @@ import loginService from '../services/login'
 import { setNotification } from '../reducers/notificationReducer'
 import { userChange } from '../reducers/userReducer'
 
+import '../styles/Authentication.css'
+
 const Authentication = (props) => {
 
   const [username, setUsername]  = useState('')
   const [password, setPassword]  = useState('')
+  const [showLogin, setShowLogin]  = useState(false)
   const { user } = props
 
   useEffect(() => {
@@ -37,9 +40,10 @@ const Authentication = (props) => {
       props.userChange(user)
       setUsername('')
       setPassword('')
+      props.setNotification(`Welcome ${user.name}!`)
 
     } catch (exception) {
-      props.setNotification('käyttäjätunnus tai salasana virheellinen')
+      props.setNotification('Invalid username or password')
     }
   }
 
@@ -48,27 +52,42 @@ const Authentication = (props) => {
     props.userChange('')
     setUsername('')
     setPassword('')
-    props.setNotification('Uloskirjautuminen onnistui')
+    setShowLogin(false)
+    props.setNotification('Logged out')
+  }
+
+  const cancelLogin = () => {
+    setShowLogin(false)
   }
 
   const loginInformation = () => {
-    if (!user) return (
-      <LoginForm
-        setUsername={setUsername}
-        setPassword={setPassword}
-        handleSubmit={handleLogin}
-      />
-    )
+    if (!user) {
+      if (showLogin) {
+        return (
+          <LoginForm
+            handleCancel={cancelLogin}
+            setUsername={setUsername}
+            setPassword={setPassword}
+            handleSubmit={handleLogin}
+          />
+        )
+      } else {
+        return (
+          <p>
+            <Button variant="link" onClick={() => setShowLogin(true)}>Log in</Button>
+          </p>
+        )
+      }
+    }
     return (
       <p>
-        {user.name} logged in&nbsp;
         <Button variant="link" onClick={() => handleLogout()}>logout</Button>
       </p>
     )
   }
 
   return (
-    <div>
+    <div className="authentication-container">
       {loginInformation()}
     </div>
   )
