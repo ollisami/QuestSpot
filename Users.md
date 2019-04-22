@@ -14,6 +14,7 @@
 | city | String | 1 | true | City for the studio |
 | country | String | 1 | true | Country for the studio |
 | email | String | 1 | true | Email for the studio |
+| description | String | 1 | false | Description for the studio |
 | artists | String [ ] | 0...n | false | Artists id:s linked to the studio |
 | images | String [ ] | 0...n | false | URL:S to images linked to the studio |
 | tags | String [ ] | 0...n | false | Tags linked to the studio |
@@ -31,6 +32,7 @@
 | city | String | 1 | true | City for the artist |
 | country | String | 1 | true | Country for the artist |
 | email | String | 1 | true | Email for the artist |
+| description | String | 1 | false | Description for the artist |
 | studio | String  | 0..1 | false | Studio id linked to the artist |
 | images | String [ ] | 0...n | false | URL:s to images linked to the artist |
 | tags | String [ ] | 0...n | false | Tags linked to the artist |ta
