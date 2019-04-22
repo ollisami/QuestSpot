@@ -22,16 +22,25 @@ studioRouter.post('/', async (request, response) => {
       response.send()
       return
     }
-    const passwordHash = await getPasswordHash(body.password)
+
+    if (
+      !body.name ||
+        !body.address ||
+        !body.postalCode ||
+        !body.city ||
+        !body.email
+    ) {
+      response.status(400).send({ error: 'Missing required data' })
+      response.send()
+      return
+    }
+
+    const { password, ...studioProps } = body
+    const passwordHash = await getPasswordHash(password)
 
     const studio = new Studio({
-      username: body.username,
+      ...studioProps,
       passwordHash: passwordHash,
-      name: body.name === undefined ? 'undefined' : body.name,
-      address: body.address === undefined ? 'undefined' : body.address,
-      postalCode: body.postalCode === undefined ? 'undefined' : body.postalCode,
-      city: body.city === undefined ? 'undefined' : body.city,
-      country: body.country === undefined ? 'undefined' : body.country,
       artists: body.artists === undefined ? [] : body.artists,
       images: body.images === undefined ? [] : body.images,
       tags: body.tags === undefined ? [] : body.tags

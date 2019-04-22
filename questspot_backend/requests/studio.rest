@@ -24,7 +24,7 @@ PUT http://localhost:3003/api/profiles/studios/5cab2339e320fa26c8701685
 Content-Type: application/json
 
 {
-    "username": "Pekka",
+    "username": "Stdio with description",
     "password": "test",
     "name": "Pekan studio päivitetty",
     "address": "test address",
@@ -32,6 +32,7 @@ Content-Type: application/json
     "city": "Göteborg",
     "country": "Sweden",
     "email": "test@test.fi",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim diam leo, eu aliquam purus rutrum at. Mauris tempor non elit ullamcorper posuere. Curabitur sit amet bibendum urna, ut dignissim ligula. Nullam pellentesque rutrum imperdiet. Cras massa nunc, aliquam ac mattis quis, suscipit eget nulla.",
     "images": [
         "https://source.unsplash.com/random/1080x1080",
         "https://source.unsplash.com/random/1080x1080"

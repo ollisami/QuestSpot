@@ -40,7 +40,7 @@ artistRouter.post('/', async (request, response) => {
     const artist = new Artist({
       ...artistProps,
       passwordHash: passwordHash,
-      artists: body.artists === undefined ? [] : body.artists,
+      studio: body.studio === undefined ? null : body.studio,
       images: body.images === undefined ? [] : body.images,
       tags: body.tags === undefined ? [] : body.tags
     })

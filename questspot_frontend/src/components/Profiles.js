@@ -39,6 +39,8 @@ const Profiles = ({ profiles }) => {
       tags.some(tag => 
         tag.name === profile.city ||
         tag.name === profile.country ||
+        tag.name === profile.username ||
+        tag.name === profile.name ||
         profile.tags.indexOf(tag.name) >= 0
       )
     )
