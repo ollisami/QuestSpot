@@ -8,7 +8,11 @@ const ImageLoader = ({ imgUrl, altText }) => {
 
     return (
         <div>
-          {!loaded && <Loading color="#d1d1d1" type="spin"/>}
+          {!loaded &&
+            <div className="loadingContainer" width="100%" height="300px">
+              <Loading color="#d1d1d1" type="spin"/>
+            </div>
+          }
           <LazyLoad>
             <img
               src={imgUrl}
