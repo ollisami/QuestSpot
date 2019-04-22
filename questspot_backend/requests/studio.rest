@@ -4,7 +4,7 @@ POST http://localhost:3003/api/profiles/studios
 Content-Type: application/json
 
 {
-    "username": "Pekka",
+    "username": "testStudio",
     "password": "test",
     "name": "Pekan Studio",
     "address": "test address",
@@ -16,7 +16,7 @@ Content-Type: application/json
         "https://source.unsplash.com/random/1080x1080",
         "https://source.unsplash.com/random/1080x1080"
     ],
-    "tags": ["testTag", "testTag2"]
+    "tags": ["wifi", "computers"]
 }
 ### Edit studio
 

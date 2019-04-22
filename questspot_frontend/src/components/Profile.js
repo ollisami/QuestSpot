@@ -1,12 +1,29 @@
 import React from 'react'
-import ImageLoader from './ImageLoader'
 import { Link } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button, Carousel } from 'react-bootstrap'
 import '../styles/Profiles.css'
 
 const Profile = ({ profile }) => {
   if (!profile) return null
 
+
+  const mapProfileImages = () => {
+
+    const divStyle = {
+      minHeight: "200px",
+    }
+
+    return profile.images.map((image, index) =>
+      <Carousel.Item key={index} style={divStyle}>
+        <img
+          src={image}
+          alt={`${profile.username} ${index}`}
+          width="100%"
+          height="auto"
+        />
+      </Carousel.Item>
+    )
+  }
 
   return (
     <div key={profile.id}>
@@ -17,10 +34,9 @@ const Profile = ({ profile }) => {
       </Link>
 
       {profile.images &&
-        <ImageLoader
-          imgUrl={profile.images[0]}
-          altText={profile.name}
-        />
+        <Carousel interval={null}>
+          {mapProfileImages()}
+        </Carousel>
       }
       <div className="flex-grid">
         <div className="col-button">
