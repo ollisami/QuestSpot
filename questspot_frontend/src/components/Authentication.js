@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap'
 import LoginForm from './LoginForm'
 
 import loginService from '../services/login'
+import profileService from '../services/profiles'
 
 import { setNotification } from '../reducers/notificationReducer'
 import { userChange } from '../reducers/userReducer'
@@ -23,6 +24,7 @@ const Authentication = (props) => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       props.userChange(user)
+      profileService.setToken(user.token)
     }
   }, [])
 

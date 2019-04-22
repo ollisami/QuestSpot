@@ -35,15 +35,23 @@ const Profiles = ({ profiles }) => {
   }
 
   const filteredProfiles = () => {
-    return tags.length === 0 ? profiles : profiles.filter(profile => 
-      tags.some(tag => 
-        tag.name === profile.city ||
-        tag.name === profile.country ||
-        tag.name === profile.username ||
-        tag.name === profile.name ||
-        profile.tags.indexOf(tag.name) >= 0
-      )
-    )
+    const scores = profiles.map(p => [{profile: p}, {score: p.likes.length}])
+    if (tags.length > 0) {
+      scores.forEach(s => {
+        tags.forEach(tag => {
+          if (
+            tag.name === s[0].profile.city ||
+            tag.name === s[0].profile.country ||
+            tag.name === s[0].profile.username ||
+            tag.name === s[0].profile.name ||
+            s[0].profile.tags.indexOf(tag.name) >= 0
+          ) s[1].score += 10000
+        })
+      })
+    }
+    return scores
+    .sort((a, b) => b[1].score - a[1].score)
+    .map(obj => obj[0].profile)
   }
 
   const mapping = () => {

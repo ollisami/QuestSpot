@@ -1,12 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button, Carousel } from 'react-bootstrap'
+import { userChange } from '../reducers/userReducer'
+import profileService from '../services/profiles'
+
 import '../styles/Profiles.css'
 
-const Profile = ({ profile }) => {
+const Profile = (props) => {
+  const { user } = props
+  let profile = props.profile
+
   if (!profile) return null
 
-
+  const [userLikedProfile, setUserLikedProfile] = useState(user && profile.likes.includes(user.username))
+  const [likes, setLikes] = useState(profile.likes.length)
   const mapProfileImages = () => {
 
     const divStyle = {
@@ -25,6 +33,16 @@ const Profile = ({ profile }) => {
     )
   }
 
+  const handleLikeButtonClick = async (event) => {
+    if (!user) {
+      console.log("Error: Cant like without logging in")
+      return
+    }
+    profile = await profileService.like(profile)
+    setUserLikedProfile(!userLikedProfile)
+    setLikes(!userLikedProfile ? likes + 1 : likes - 1)
+  }
+
   return (
     <div key={profile.id}>
       <Link to={'/profiles/'}>
@@ -40,7 +58,10 @@ const Profile = ({ profile }) => {
       }
       <div className="flex-grid">
         <div className="col-button">
-          <Button className="round-button" variant="outline-success">
+          <Button
+            className={`round-button ${(userLikedProfile ? 'liked' : 'not-liked')}`} 
+            variant="outline-success"
+            onClick={() => handleLikeButtonClick()}>
             <i className="fas fa-thumbs-up"></i>
           </Button>
         </div>
@@ -59,6 +80,7 @@ const Profile = ({ profile }) => {
         </div>
       </div>
       <div className="profile-info">
+        <p>Likes: {likes}</p>
         <p>{profile.description}</p>
         <p>{profile.name}, "{profile.username}"</p>
         <p>{profile.address}, {profile.postalCode}, {profile.city}, {profile.country}</p>
@@ -68,4 +90,14 @@ const Profile = ({ profile }) => {
   )
 }
 
-export default Profile
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+const ConnectedProfile = connect(mapStateToProps, {
+  userChange
+})(Profile)
+
+export default ConnectedProfile
