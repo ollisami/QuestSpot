@@ -13,6 +13,7 @@ const artistSchema = mongoose.Schema({
   city: String,
   country: String,
   email: String,
+  description: String,
   studio: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Studio'

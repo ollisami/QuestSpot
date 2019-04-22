@@ -59,6 +59,7 @@ const Profile = ({ profile }) => {
         </div>
       </div>
       <div className="profile-info">
+        <p>{profile.description}</p>
         <p>{profile.name}, "{profile.username}"</p>
         <p>{profile.address}, {profile.postalCode}, {profile.city}, {profile.country}</p>
         <p>{profile.tags}</p>
