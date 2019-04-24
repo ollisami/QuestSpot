@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button, Carousel } from 'react-bootstrap'
@@ -13,10 +13,20 @@ const Profile = (props) => {
 
   if (!profile) return null
 
-  const [userLikedProfile, setUserLikedProfile] = useState(user && profile.likes.includes(user.username))
+  const [userLikedProfile, setUserLikedProfile] = useState(false)
   const [likes, setLikes] = useState(profile.likes.length)
-  const mapProfileImages = () => {
 
+  useEffect(() => {
+    fetchProfile(profile.id)
+  },[profile.id])
+
+  const fetchProfile = async (id) => {
+    profile = await profileService.getOne(id)
+    setLikes(profile.likes.length)
+    setUserLikedProfile(user && profile.likes.includes(user.username))
+  }
+
+  const mapProfileImages = () => {
     const divStyle = {
       minHeight: "200px",
     }

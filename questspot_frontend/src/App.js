@@ -9,6 +9,7 @@ import Notification from './components/Notification'
 import Profiles from './components/Profiles'
 import Profile from './components/Profile'
 import Sidebar from './components/Sidebar'
+import LoginForm from './components/LoginForm'
 
 import { setNotification } from './reducers/notificationReducer'
 import { initializeProfiles } from './reducers/profilesReducer'
@@ -28,6 +29,7 @@ const App = (props) => {
 
   return (
     <div id="App">
+      <LoginForm/>
       <Sidebar pageWrapId={"page-wrap"} outerContainerId={"App"} />
       <div className="container" id="container">
         <Router>

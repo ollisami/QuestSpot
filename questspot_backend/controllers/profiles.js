@@ -26,6 +26,11 @@ profileRouter.get('/', async (request, response) => {
   response.json(profiles.map(u => u.toJSON()))
 })
 
+profileRouter.get('/:id', async (request, response) => {
+  const profile = await Profile.findById(request.params.id)
+  response.json(profile.toJSON())
+})
+
 profileRouter.post('/', async (request, response) => {
   try {
     const body = request.body
