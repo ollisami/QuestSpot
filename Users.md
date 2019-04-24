@@ -5,7 +5,7 @@
 
 | Field | Type | Count | Required | Description|
 | :----:|:-----| :-----| :-----|:-----|
-| type | String | 1 | true |Type of the profile (Studio || Artist) Type "Basic" will be added later for customers |
+| type | String | 1 | true |Type of the profile (Studio or Artist). Type "Basic" will be added later for customers |
 | id | String | 1 | true |Identifier for the profile |
 | username | String | 1 | true | Username for the profile |
 | passwordHash | String | 1 | true | Decrypted password for the profile |
