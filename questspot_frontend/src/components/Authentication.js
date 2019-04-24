@@ -26,6 +26,7 @@ const Authentication = (props) => {
     window.localStorage.removeItem('loggedQuestspotUser')
     props.userChange('')
     props.setNotification('Logged out')
+    profileService.setToken('')
   }
 
   const loginInformation = () => {

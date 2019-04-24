@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
 
 import loginService from '../services/login'
+import profileService from '../services/profiles'
 
 import { setShowLogin } from '../reducers/loginReducer'
 import { setNotification } from '../reducers/notificationReducer'
@@ -29,6 +30,7 @@ const LoginForm = (props) => {
       )
 
       props.userChange(user)
+      profileService.setToken(user.token)
       setUsername('')
       setPassword('')
       props.setNotification(`Welcome ${user.name}!`)
