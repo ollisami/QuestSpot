@@ -49,7 +49,7 @@ profileRouter.post('/', async (request, response) => {
     }
 
     if (
-        !body.name ||
+      !body.name ||
         !body.address ||
         !body.postalCode ||
         !body.city ||
@@ -88,7 +88,7 @@ profileRouter.put('/:id', async (request, response) => {
       return response.status(401).json({ error: 'token missing or invalid' })
     }
 
-    const {password, ...props } = body
+    const { password, ...props } = body
     if (body.password) {
       props.passwordHash = await getPasswordHash(password)
     }

@@ -4,9 +4,9 @@ import { Button } from 'react-bootstrap'
 
 import profileService from '../services/profiles'
 
-import {setNotification} from '../reducers/notificationReducer'
-import {userChange} from '../reducers/userReducer'
-import {setShowLogin} from '../reducers/loginReducer'
+import { setNotification } from '../reducers/notificationReducer'
+import { userChange } from '../reducers/userReducer'
+import { setShowLogin } from '../reducers/loginReducer'
 
 import '../styles/Authentication.css'
 

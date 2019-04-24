@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button, Carousel } from 'react-bootstrap'
@@ -28,7 +28,7 @@ const Profile = (props) => {
 
   const mapProfileImages = () => {
     const divStyle = {
-      minHeight: "200px",
+      minHeight: '200px',
     }
 
     return profile.images.map((image, index) =>
@@ -43,9 +43,9 @@ const Profile = (props) => {
     )
   }
 
-  const handleLikeButtonClick = async (event) => {
+  const handleLikeButtonClick = async () => {
     if (!user) {
-      console.log("Error: Cant like without logging in")
+      console.log('Error: Cant like without logging in')
       return
     }
     profile = await profileService.like(profile)
@@ -69,7 +69,7 @@ const Profile = (props) => {
       <div className="flex-grid">
         <div className="col-button">
           <Button
-            className={`round-button ${(userLikedProfile ? 'liked' : 'not-liked')}`} 
+            className={`round-button ${(userLikedProfile ? 'liked' : 'not-liked')}`}
             variant="outline-success"
             onClick={() => handleLikeButtonClick()}>
             <i className="fas fa-thumbs-up"></i>
@@ -92,7 +92,7 @@ const Profile = (props) => {
       <div className="profile-info">
         <p>Likes: {likes}</p>
         <p>{profile.description}</p>
-        <p>{profile.name}, "{profile.username}"</p>
+        <p>{profile.name}, {profile.username}</p>
         <p>{profile.address}, {profile.postalCode}, {profile.city}, {profile.country}</p>
         <p>{profile.tags}</p>
       </div>

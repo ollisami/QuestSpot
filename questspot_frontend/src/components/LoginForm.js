@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
 
 import loginService from '../services/login'
 
 import { setShowLogin } from '../reducers/loginReducer'
-import {setNotification} from '../reducers/notificationReducer'
-import {userChange} from '../reducers/userReducer'
+import { setNotification } from '../reducers/notificationReducer'
+import { userChange } from '../reducers/userReducer'
 
 import '../styles/LoginForm.css'
 
@@ -16,7 +16,7 @@ const LoginForm = (props) => {
 
   const [username, setUsername]  = useState('')
   const [password, setPassword]  = useState('')
-  
+
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
@@ -38,7 +38,7 @@ const LoginForm = (props) => {
       props.setNotification('Invalid username or password')
     }
   }
-  
+
   const cancelLogin = () => {
     props.setShowLogin(false)
   }
@@ -80,6 +80,6 @@ const ConnectedLoginForm = connect(mapStateToProps,
     setNotification,
     userChange
   }
-  )(LoginForm)
+)(LoginForm)
 
 export default ConnectedLoginForm
