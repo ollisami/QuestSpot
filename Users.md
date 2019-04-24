@@ -1,41 +1,27 @@
 # Database user models
 
 
-## Studio
+## Profile
 
 | Field | Type | Count | Required | Description|
 | :----:|:-----| :-----| :-----|:-----|
+| type | String | 1 | true |Type of the profile (Studio || Artist) Type "Basic" will be added later for customers |
 | id | String | 1 | true |Identifier for the profile |
 | username | String | 1 | true | Username for the profile |
 | passwordHash | String | 1 | true | Decrypted password for the profile |
-| name | String | 1 | true | Display name for the studio |
-| address | String | 1 | true | Street address for the studio |
-| postalCode | String | 1 | true | Postal code for the studio |
-| city | String | 1 | true | City for the studio |
-| country | String | 1 | true | Country for the studio |
-| email | String | 1 | true | Email for the studio |
-| description | String | 1 | false | Description for the studio |
-| artists | String [ ] | 0...n | false | Artists id:s linked to the studio |
-| images | String [ ] | 0...n | false | URL:S to images linked to the studio |
-| tags | String [ ] | 0...n | false | Tags linked to the studio |
+| name | String | 1 | true (studio & artist) | Display name for the profile |
+| address | String | 1 | true (studio & artist)| Street address for the profile |
+| postalCode | String | 1 | true (studio & artist) | Postal code for the profile |
+| city | String | 1 | true (studio & artist)| City for the profile |
+| country | String | 1 | true (studio & artist)| Country for the profile |
+| email | String | 1 | true | Email for the profile |
+| description | String | 1 | false | Description for the profile |
+| likes | String[] | 0...n | false | ID:s of profiles that liked this profile (studio & artist) |
+| studio | String  | 0..1 | false | Studio id linked to the profile (artist only) |
+| artists | String [ ] | 0...n | false | Artists id:s linked to the profile (studio only) |
+| images | String [ ] | 0...n | false | URL:S to images linked to the profile (studio & artist) |
+| tags | String [ ] | 0...n | false | Tags linked to the profile (studio & artist) |
 
-## Artist
-
-| Field | Type | Count | Required | Description|
-| :----:|:-----| :-----| :-----|:-----|
-| id | String | 1 | true | Identifier for the profile |
-| username | String | 1 | true | Username for the profile |
-| passwordHash | String | 1 | true | Decrypted password for the profile |
-| name | String | 1 | true | Display name for the artist |
-| address | String | 1 | true | Street address for the artist |
-| postalCode | String | 1 | true | Postal code for the artist |
-| city | String | 1 | true | City for the artist |
-| country | String | 1 | true | Country for the artist |
-| email | String | 1 | true | Email for the artist |
-| description | String | 1 | false | Description for the artist |
-| studio | String  | 0..1 | false | Studio id linked to the artist |
-| images | String [ ] | 0...n | false | URL:s to images linked to the artist |
-| tags | String [ ] | 0...n | false | Tags linked to the artist |ta
 
 Käyttäjiin liitetyt kuvat (images) tallennetaan tietotakantaan String tyyppisinä osoitteina, josta kuvat haetaan näytettäessä.
 Tarkoituksena on projektin edetessä siirtyä käyttämään instagramin rajapintaa kuvien näyttämiseen.
