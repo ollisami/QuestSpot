@@ -17,8 +17,8 @@ Content-Type: application/json
     "email": "test@test.fi",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim diam leo, eu aliquam purus rutrum at. Mauris tempor non elit ullamcorper posuere. Curabitur sit amet bibendum urna, ut dignissim ligula. Nullam pellentesque rutrum imperdiet. Cras massa nunc, aliquam ac mattis quis, suscipit eget nulla.",
     "images": [
-        "https://source.unsplash.com/random/1080x1080",
-        "https://source.unsplash.com/random/1080x1080"
+        "https://source.unsplash.com/1080x1080/?tattoo",
+        "https://source.unsplash.com/1080x1080/?tattoo"
     ],
     "artists":["5cbdc0802928cc2ab0d26654"],
     "tags": ["blackwork"]
@@ -30,20 +30,20 @@ Content-Type: application/json
 
 {
     "type": "Artist",
-    "username": "testArtist",
+    "username": "testArtist9",
     "password": "test",
-    "name": "Jon Snow",
+    "name": "Ioana Potter",
     "address": "testitie 11",
     "postalCode": "12345",
-    "city": "Helsinki",
-    "country": "Finland",
+    "city": "Nantes",
+    "country": "France",
     "email": "test@test.fi",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim diam leo, eu aliquam purus rutrum at. Mauris tempor non elit ullamcorper posuere. Curabitur sit amet bibendum urna, ut dignissim ligula. Nullam pellentesque rutrum imperdiet. Cras massa nunc, aliquam ac mattis quis, suscipit eget nulla.",
     "images": [
-        "https://source.unsplash.com/random/1080x1080",
-        "https://source.unsplash.com/random/1080x1080"
+        "https://source.unsplash.com/1080x1080/?tattoo",
+        "https://source.unsplash.com/1080x1080/?tattoo"
     ],
-    "tags": ["blackwork"]
+    "tags": ["lettering", "black and grey"]
 }
 ### Edit profile
 

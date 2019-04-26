@@ -1,0 +1,19 @@
+### GET all news
+GET http://localhost:3003/api/news/
+
+### Add new news
+POST http://localhost:3003/api/news/
+Content-Type: application/json
+
+{
+    "image": "https://source.unsplash.com/1080x1080/?tattoo",
+    "title": "This is test news!",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "username": "testArtist3",
+    "city": "Helsinki",
+    "country": "Finland",
+    "tags": [
+        "blackwork"
+    ],
+    "link": "/profiles/testArtist3"
+}

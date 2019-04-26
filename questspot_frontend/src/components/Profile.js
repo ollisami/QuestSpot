@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useLastLocation } from 'react-router-last-location'
 import { Button, Carousel } from 'react-bootstrap'
 import { userChange } from '../reducers/userReducer'
 import profileService from '../services/profiles'
@@ -55,7 +56,7 @@ const Profile = (props) => {
 
   return (
     <div key={profile.id}>
-      <Link to={'/profiles/'}>
+      <Link to={useLastLocation()}>
         <div className="back-button">
           <i className="fas fa-arrow-left"></i>
         </div>
