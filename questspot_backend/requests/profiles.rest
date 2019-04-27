@@ -1,2 +1,74 @@
 ### GET all profiles
 GET http://localhost:3003/api/profiles/
+
+### Add new studio
+POST http://localhost:3003/api/profiles/
+Content-Type: application/json
+
+{
+    "type": "Studio",
+    "username": "testStudio",
+    "password": "test",
+    "name": "Tattoo studio oy",
+    "address": "testitie 1",
+    "postalCode": "12345",
+    "city": "Helsinki",
+    "country": "Finland",
+    "email": "test@test.fi",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim diam leo, eu aliquam purus rutrum at. Mauris tempor non elit ullamcorper posuere. Curabitur sit amet bibendum urna, ut dignissim ligula. Nullam pellentesque rutrum imperdiet. Cras massa nunc, aliquam ac mattis quis, suscipit eget nulla.",
+    "images": [
+        "https://source.unsplash.com/random/1080x1080",
+        "https://source.unsplash.com/random/1080x1080"
+    ],
+    "artists":["5cbdc0802928cc2ab0d26654"],
+    "tags": ["blackwork"]
+}
+
+### Add new artist
+POST http://localhost:3003/api/profiles/
+Content-Type: application/json
+
+{
+    "type": "Artist",
+    "username": "testArtist",
+    "password": "test",
+    "name": "Jon Snow",
+    "address": "testitie 11",
+    "postalCode": "12345",
+    "city": "Helsinki",
+    "country": "Finland",
+    "email": "test@test.fi",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim diam leo, eu aliquam purus rutrum at. Mauris tempor non elit ullamcorper posuere. Curabitur sit amet bibendum urna, ut dignissim ligula. Nullam pellentesque rutrum imperdiet. Cras massa nunc, aliquam ac mattis quis, suscipit eget nulla.",
+    "images": [
+        "https://source.unsplash.com/random/1080x1080",
+        "https://source.unsplash.com/random/1080x1080"
+    ],
+    "tags": ["blackwork"]
+}
+### Edit profile
+
+PUT http://localhost:3003/api/profiles/5cbdbff92928cc2ab0d26653
+Content-Type: application/json
+
+{
+    "type": "Artist",
+    "username": "testArtist",
+    "password": "test",
+    "name": "Jon Snow",
+    "address": "testitie 12",
+    "postalCode": "12345",
+    "city": "Helsinki",
+    "country": "Finland",
+    "email": "test@test.fi",
+    "images": [
+        "https://source.unsplash.com/random/1080x1080",
+        "https://source.unsplash.com/random/1080x1080"
+    ],
+    "tags": ["blackwork"]
+}
+### Remove artist
+
+DELETE http://localhost:3003/api/profiles/5cbdbff92928cc2ab0d26653
+Content-Type: application/json
+
+###

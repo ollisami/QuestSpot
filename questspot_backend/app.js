@@ -9,8 +9,6 @@ const logger     = require('./utils/logger')
 const loginRouter    = require('./controllers/login')
 const profilesRouter = require('./controllers/profiles')
 const tagsRouter     = require('./controllers/tags')
-const studiosRouter  = require('./controllers/studios')
-const artistRounter  = require('./controllers/artists')
 
 logger.info('connecting to', config.MONGODB_URI)
 
@@ -27,7 +25,5 @@ app.use(bodyParser.json())
 app.use('/api/login', loginRouter)
 app.use('/api/profiles', profilesRouter)
 app.use('/api/tags', tagsRouter)
-app.use('/api/profiles/studios', studiosRouter)
-app.use('/api/profiles/artists', artistRounter)
 
 module.exports = app

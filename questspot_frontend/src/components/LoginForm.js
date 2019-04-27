@@ -1,18 +1,53 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
+
+import loginService from '../services/login'
+import profileService from '../services/profiles'
+
+import { setShowLogin } from '../reducers/loginReducer'
+import { setNotification } from '../reducers/notificationReducer'
+import { userChange } from '../reducers/userReducer'
 
 import '../styles/LoginForm.css'
 
-const LoginForm = ({
-  handleCancel,
-  handleSubmit,
-  setUsername,
-  setPassword
-}) => {
+const LoginForm = (props) => {
+
+  if (!props.showLogin) return null
+
+  const [username, setUsername]  = useState('')
+  const [password, setPassword]  = useState('')
+
+  const handleLogin = async (event) => {
+    event.preventDefault()
+    try {
+      const user = await loginService.login({
+        username:username, password:password
+      })
+      console.log('user', user)
+      window.localStorage.setItem(
+        'loggedQuestspotUser', JSON.stringify(user)
+      )
+
+      props.userChange(user)
+      profileService.setToken(user.token)
+      setUsername('')
+      setPassword('')
+      props.setNotification(`Welcome ${user.name}!`)
+      props.setShowLogin(false)
+
+    } catch (exception) {
+      props.setNotification('Invalid username or password')
+    }
+  }
+
+  const cancelLogin = () => {
+    props.setShowLogin(false)
+  }
+
   return (
     <div className="login-form">
-      <Form onSubmit={handleSubmit} className="overlay-content">
+      <Form onSubmit={handleLogin} className="overlay-content">
         <Form.Group>
           <Form.Label>Username</Form.Label>
           <Form.Control
@@ -28,15 +63,25 @@ const LoginForm = ({
           />
           <br></br>
           <Button variant="primary" type="submit" className="loginform-button">Submit</Button>
-          <Button variant="danger" onClick={handleCancel} className="loginform-button">Cancel</Button>
+          <Button variant="danger" onClick={cancelLogin} className="loginform-button">Cancel</Button>
         </Form.Group>
       </Form>
     </div>
   )
 }
 
-LoginForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
+const mapStateToProps = (state) => {
+  return {
+    showLogin: state.showLogin,
+  }
 }
 
-export default LoginForm
+const ConnectedLoginForm = connect(mapStateToProps,
+  {
+    setShowLogin,
+    setNotification,
+    userChange
+  }
+)(LoginForm)
+
+export default ConnectedLoginForm

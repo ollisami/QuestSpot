@@ -9,6 +9,7 @@ import Notification from './components/Notification'
 import Profiles from './components/Profiles'
 import Profile from './components/Profile'
 import Sidebar from './components/Sidebar'
+import LoginForm from './components/LoginForm'
 
 import { setNotification } from './reducers/notificationReducer'
 import { initializeProfiles } from './reducers/profilesReducer'
@@ -23,12 +24,13 @@ const App = (props) => {
     props.initializeProfiles()
   },[])
 
-  const profileByUsername = (username) => 
+  const profileByUsername = (username) =>
     profiles.find(prof => prof.username === username)
 
   return (
     <div id="App">
-      <Sidebar pageWrapId={"page-wrap"} outerContainerId={"App"} />
+      <LoginForm/>
+      <Sidebar pageWrapId={'page-wrap'} outerContainerId={'App'} />
       <div className="container" id="container">
         <Router>
           <div id="page-wrap">
@@ -37,9 +39,9 @@ const App = (props) => {
               <Notification/>
             </div>
             <div className="main-content">
-              <Route exact path="/profiles/" render={() => 
+              <Route exact path="/profiles/" render={() =>
                 <Profiles profiles={profiles} />} />
-              <Route path="/profiles/:username" render={({match}) => 
+              <Route path="/profiles/:username" render={({ match }) =>
                 <Profile profile={profileByUsername(match.params.username)} />} />
             </div>
           </div>

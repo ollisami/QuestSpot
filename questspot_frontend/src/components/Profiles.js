@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactTags from 'react-tag-autocomplete'
 import tagService from '../services/tags'
 import ImageLoader from './ImageLoader'
 import '../styles/Profiles.css'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const Profiles = ({ profiles }) => {
@@ -19,7 +19,7 @@ const Profiles = ({ profiles }) => {
 
   const getSuggestionsFromServer = async () => {
     let suggestionList = await tagService.getAll()
-    suggestionList = suggestionList.map((s, index) => { return {id: index, name: s}})
+    suggestionList = suggestionList.map((s, index) => { return { id: index, name: s }})
     setSuggestions(suggestionList)
   }
 
@@ -28,22 +28,30 @@ const Profiles = ({ profiles }) => {
     newTags.splice(i, 1)
     setTags(newTags)
   }
- 
+
   const handleAddition = (tag) => {
     const newTags = [].concat(tags, tag)
     setTags(newTags)
   }
 
   const filteredProfiles = () => {
-    return tags.length === 0 ? profiles : profiles.filter(profile => 
-      tags.some(tag => 
-        tag.name === profile.city ||
-        tag.name === profile.country ||
-        tag.name === profile.username ||
-        tag.name === profile.name ||
-        profile.tags.indexOf(tag.name) >= 0
-      )
-    )
+    const scores = profiles.map(p => [{ profile: p }, { score: p.likes.length }])
+    if (tags.length > 0) {
+      scores.forEach(s => {
+        tags.forEach(tag => {
+          if (
+            tag.name === s[0].profile.city ||
+            tag.name === s[0].profile.country ||
+            tag.name === s[0].profile.username ||
+            tag.name === s[0].profile.name ||
+            s[0].profile.tags.indexOf(tag.name) >= 0
+          ) s[1].score += 10000
+        })
+      })
+    }
+    return scores
+      .sort((a, b) => b[1].score - a[1].score)
+      .map(obj => obj[0].profile)
   }
 
   const mapping = () => {
@@ -57,10 +65,10 @@ const Profiles = ({ profiles }) => {
             />
           }
           <div className="profile-name">
-              <Link to={`/profiles/${profile.username}`}>{profile.name}</Link>
+            <Link to={`/profiles/${profile.username}`}>{profile.name}</Link>
           </div>
           <div className="profile-city">
-              {profile.city}, {profile.country}
+            {profile.city}, {profile.country}
           </div>
           <div className="bottom-border" />
         </div>

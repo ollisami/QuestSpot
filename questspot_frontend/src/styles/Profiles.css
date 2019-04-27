@@ -180,3 +180,15 @@
 .btn {
   padding: 0;
 }
+
+.liked {
+  color: #fff !important;
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+}
+
+.not-liked {
+  color: #28a745 !important;
+  border-color: #28a745 !important;
+  background-color: transparent !important;
+}
