@@ -12,6 +12,7 @@ import Profile from './components/Profile'
 import News from './components/News'
 import Sidebar from './components/Sidebar'
 import LoginForm from './components/LoginForm'
+import RegisterationForm from './components/RegisterationForm'
 
 import { setNotification } from './reducers/notificationReducer'
 import { initializeProfiles } from './reducers/profilesReducer'
@@ -58,6 +59,8 @@ const App = (props) => {
                   <Profiles profiles={profiles} filters={splitFilters(match.params.filters)} />} />
                 <Route path="/profile/:username" render={({ match }) =>
                   <Profile profile={profileByUsername(match.params.username)} />} />
+                <Route exact path="/registeration/" render={() =>
+                  <RegisterationForm />} />
               </div>
             </div>
           </LastLocationProvider>

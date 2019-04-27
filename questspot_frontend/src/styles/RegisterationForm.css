@@ -1,0 +1,31 @@
+.registeration-form {
+    margin: 0em 1em;
+}
+
+.registeration-input {
+    margin-bottom: 10px;
+}
+
+.registeration-button {
+    margin: 1em;
+    padding: 0.5em 5%;
+}
+
+.flex-div {
+    display: flex;
+}
+
+.type-button {
+    border-radius: 150px;
+    border: 0.1em solid;
+    height: 2em;
+    width: 2em;
+    font-size: 2.5em;
+    line-height: 0px;
+}
+
+.type-selected {
+    color: #fff !important;
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+  }
