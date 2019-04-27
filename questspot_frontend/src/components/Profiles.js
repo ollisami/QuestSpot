@@ -6,7 +6,7 @@ import '../styles/Profiles.css'
 import { Link } from 'react-router-dom'
 
 
-const Profiles = ({ profiles }) => {
+const Profiles = ({ profiles, filters }) => {
 
   if(!profiles) return null
 
@@ -21,6 +21,12 @@ const Profiles = ({ profiles }) => {
     let suggestionList = await tagService.getAll()
     suggestionList = suggestionList.map((s, index) => { return { id: index, name: s }})
     setSuggestions(suggestionList)
+
+    let f = []
+    if (filters) filters.forEach( (filter, index) => {
+      f.push({ id: index, name: filter })
+    })
+    setTags(f)
   }
 
   const handleDelete = (i) => {
@@ -65,7 +71,7 @@ const Profiles = ({ profiles }) => {
             />
           }
           <div className="profile-name">
-            <Link to={`/profiles/${profile.username}`}>{profile.name}</Link>
+            <Link to={`/profile/${profile.username}`}>{profile.name}</Link>
           </div>
           <div className="profile-city">
             {profile.city}, {profile.country}

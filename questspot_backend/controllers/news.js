@@ -3,48 +3,47 @@ const News           = require('../models/news')
 const Profiles       = require('../models/profile')
 
 const createNewsFromPopularTags = async () => {
-    const likeLimit = 0
-    const profiles  = await Profiles.find({})
-    
-    let allTags  = []
-    profiles.forEach(p => {
-      p.tags.forEach(tag => {
-          allTags.push({tag: tag , likes: p.likes.length})
-      })
-    })
+  const likeLimit = 0
+  const profiles  = await Profiles.find({})
 
-    let filteredTags = []
-    allTags.forEach (elem => {
-        const index = filteredTags.findIndex((t) => (
-          t.tag === elem.tag  
-        ))
-        if (index === -1) {
-          filteredTags.push(elem)
-        } else {
-            filteredTags[index].likes += elem.likes
-        }
+  let allTags  = []
+  profiles.forEach(p => {
+    p.tags.forEach(tag => {
+      allTags.push({ tag: tag , likes: p.likes.length })
     })
-    filteredTags = filteredTags.filter((elem, index, self) =>
-        elem.likes > likeLimit
-    )
-    
-    const news = []
-    filteredTags.forEach(elem => {
-        news.push(new News({
-            image: "https://source.unsplash.com/1080x1080/?tattoo",
-            title: `Now trending style: ${elem.tag}`,
-            description: "Check out this cool new style!",
-            link: "/profiles"
-        }))
-    })
-    return news
+  })
+
+  let filteredTags = []
+  allTags.forEach (elem => {
+    const index = filteredTags.findIndex((t) => (
+      t.tag === elem.tag
+    ))
+    if (index === -1) {
+      filteredTags.push(elem)
+    } else {
+      filteredTags[index].likes += elem.likes
+    }
+  })
+  filteredTags = filteredTags.filter((elem) =>
+    elem.likes > likeLimit
+  )
+
+  const news = []
+  filteredTags.forEach(elem => {
+    news.push(new News({
+      image: 'https://source.unsplash.com/1080x1080/?tattoo',
+      title: `Now trending style: ${elem.tag}`,
+      description: 'Check out this cool new style!',
+      link: `/profiles/${elem.tag}`
+    }))
+  })
+  return news
 }
 
 newsRouter.get('/', async (request, response) => {
   const news = await News.find({})
   let mappedNews = news.map(u => u.toJSON())
   mappedNews = mappedNews.concat(await createNewsFromPopularTags())
-  console.log(mappedNews)
   response.json(mappedNews)
 })
 
@@ -61,7 +60,7 @@ newsRouter.post('/', async (request, response) => {
       response.send()
       return
     }
-    const {...props } = body
+    const { ...props } = body
 
     const news = new News({
       ...props,

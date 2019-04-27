@@ -19,7 +19,7 @@ const News = ({ news }) => {
             />
           }
           <div className="profile-name">
-            <Link to={newsElem.link ? newsElem.link : "/"}>{newsElem.title}</Link>
+            <Link to={newsElem.link ? newsElem.link : '/'}>{newsElem.title}</Link>
           </div>
           <div className="profile-city">
             {newsElem.description}

@@ -34,6 +34,9 @@ const App = (props) => {
   const profileByUsername = (username) =>
     profiles.find(prof => prof.username === username)
 
+  const splitFilters = (filters) =>
+    filters.split(';')
+
   return (
     <div id="App">
       <LoginForm/>
@@ -51,7 +54,9 @@ const App = (props) => {
                   <News news={news} />} />
                 <Route exact path="/profiles/" render={() =>
                   <Profiles profiles={profiles} />} />
-                <Route path="/profiles/:username" render={({ match }) =>
+                <Route exact path="/profiles/:filters" render={({ match }) =>
+                  <Profiles profiles={profiles} filters={splitFilters(match.params.filters)} />} />
+                <Route path="/profile/:username" render={({ match }) =>
                   <Profile profile={profileByUsername(match.params.username)} />} />
               </div>
             </div>
