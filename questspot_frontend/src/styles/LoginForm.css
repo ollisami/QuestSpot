@@ -24,33 +24,5 @@
     padding: 0.5em !important;
 }
 
-.scoopedBox {
-    position: relative; 
-    top: 25%;
-    margin: .75em auto 0;
-    border-color: blue;
-    border: 100px;
-    /*padding: var(--r);*/
-    padding: 50px;
-    /*width: calc(100% - 2*var(--r) - 1em);*/
-    width: calc(100% - 2*50px - 1em);
-    max-width: 47em;
-    min-height: 10em;
-    color: #fff;
-    font: 1em georgia;
-}
 
-
-
-svg {
-    position: absolute;
-    top: 0; left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%; 
-}
-
-[id='m'] + use {
-    fill: rgba(255,0,0,.85)
-}
 
