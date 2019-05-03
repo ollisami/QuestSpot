@@ -6,12 +6,14 @@ import notificationReducer from './reducers/notificationReducer'
 import profilesReducer from './reducers/profilesReducer'
 import userReducer from './reducers/userReducer'
 import loginReducer from './reducers/loginReducer'
+import newsReducer from './reducers/newsReducer'
 
 const reducer = combineReducers({
   notification: notificationReducer,
   profiles: profilesReducer,
   user: userReducer,
-  showLogin: loginReducer
+  showLogin: loginReducer,
+  news: newsReducer
 })
 
 const store = createStore(
