@@ -33,4 +33,9 @@ const like = async newObject => {
   return response.data
 }
 
-export default { getAll, getOne, update, like, setToken }
+const create = async newObject => {
+  const response = await axios.post(baseUrl, newObject)
+  return response.data
+}
+
+export default { getAll, getOne, update, like, create, setToken }

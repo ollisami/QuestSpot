@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Form, Button, FormControl } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { useLastLocation } from 'react-router-last-location'
 import ReactTags from 'react-tag-autocomplete'
 
 import tagService from '../services/tags'
+import profileService from '../services/profiles'
+import loginService from '../services/login'
+
 import { setNotification } from '../reducers/notificationReducer'
+import { userChange } from '../reducers/userReducer'
 
 import '../styles/RegisterationForm.css'
 
@@ -32,6 +36,7 @@ const RegisterationForm = (props) => {
   const [suggestions, setSuggestions] = useState([])
 
   const previousUrl = useLastLocation() ? useLastLocation() : "/"
+  const [registerationDone, setRegisterationDone] = useState(false)
 
   useEffect(() => {
     getSuggestionsFromServer()
@@ -49,9 +54,16 @@ const RegisterationForm = (props) => {
     setTags(newTags)
   }
 
-  const handleAddition = (tag) => {
-    const newTags = [].concat(tags, tag)
-    setTags(newTags)
+  const handleAddition = (input) => {
+    var t = []
+    input.name
+    .split(" ")
+    .map((s, index) => { return { id: index, name: s }})
+    .forEach(tag => {
+      t.push(tag)
+    })
+    t = t.concat(tags)
+    setTags(t)
   }
 
   const clampState = (val) => {
@@ -67,189 +79,203 @@ const RegisterationForm = (props) => {
     setState(clampState(state - 1))
   }
   
-  
-    /*
-    const addBlog = async (event) => {
-      event.preventDefault()
-      const blogObject = {
-        title: newTitle.value,
-        author: newAuthor.value,
-        url: newUrl.value,
-        likes: 0,
-      }
-  
-      const newBlog = await blogService.create(blogObject)
-      props.createBlog(newBlog)
-      props.setNotification(`a new blog ${newTitle.value} by ${newAuthor.value} added`)
-      newTitle.reset()
-      newAuthor.reset()
-      newUrl.reset()
-    }*/
-
-    const validateType = () => {
-      if (type)
-        setNextState()
-      else  props.setNotification('Please select profile type')
+  const addProfile = async (event) => {
+    event.preventDefault()
+    const tagList = tags.map(tag => tag.name)
+    const profileObject = {
+      type: type,
+      username: username,
+      password: password,
+      name: name,
+      email: email,
+      address: address,
+      postalCode: postalcode,
+      city: city,
+      country: country,
+      description: description,
+      tags: tagList
     }
+    try {
+    const newProfile = await profileService.create(profileObject)
+    props.setNotification(`a new profile ${newProfile.username} added`)
 
-    const validateUserInfo = () => {
-      //Add better validation here (Check username is available, email is in right format etc)
-      if (username && password && name && email) 
-        setNextState()
-      else  props.setNotification('Please fill all required fields')
+    //Move this to extacted login!
+    const user = await loginService.login({
+      username:username, password:password
+    })
+    window.localStorage.setItem(
+      'loggedQuestspotUser', JSON.stringify(user)
+    )
+
+    props.userChange(user)
+    profileService.setToken(user.token)
+    setRegisterationDone(true)
+
+    } catch (exception) {
+      props.setNotification(`User creation failed. Try again later`)
     }
+  }
 
-    const validateLocation = () => {
-      //Add better validation here (Check username is available, email is in right format etc)
-      if (address && postalcode && city && country) 
-        setNextState()
-      else  props.setNotification('Please fill all required fields')
-    }
+  const validateType = () => {
+    if (type)
+      setNextState()
+    else  props.setNotification('Please select profile type')
+  }
 
-    const typeForm = () => {
-      if (states[state] !== 'Type') return null
+  const validateUserInfo = () => {
+    //Add better validation here (Check username is available, email is in right format etc)
+    if (username && password && name && email) 
+      setNextState()
+    else  props.setNotification('Please fill all required fields')
+  }
 
-      return (
-        <div>
-          <p>I am:</p>
-          <div className="flex-div">
-            <div className="col">
-              <Button
-                className={`type-button ${(type === 'Artist' ? 'type-selected ' : 'type-not-selected')}`}
-                variant="outline-success"
-                onClick={() => setType('Artist')}>
-                <i className="fas fa-palette"></i>
-              </Button>
-              <p>Artist</p>
-            </div>
-            <div className="col">
-              <Button
-                className={`type-button ${(type === 'Studio' ? 'type-selected ' : 'type-not-selected')}`}
-                variant="outline-success"
-                onClick={() => setType('Studio')}>
-                <i className="fas fa-home"></i>
-              </Button>
-              <p>Studio</p>
-            </div>
+  const validateLocation = () => {
+    //Add better validation here 
+    if (address && postalcode && city && country) 
+      setNextState()
+    else  props.setNotification('Please fill all required fields')
+  }
+
+  const typeForm = () => {
+    if (states[state] !== 'Type') return null
+
+    return (
+      <div>
+        <p>I am:</p>
+        <div className="flex-div">
+          <div className="col">
+            <Button
+              className={`type-button ${(type === 'Artist' ? 'type-selected ' : 'type-not-selected')}`}
+              variant="outline-success"
+              onClick={() => setType('Artist')}>
+              <i className="fas fa-palette"></i>
+            </Button>
+            <p>Artist</p>
           </div>
-          <Button variant="danger" className="registeration-button" onClick={setPrevState}>
+          <div className="col">
+            <Button
+              className={`type-button ${(type === 'Studio' ? 'type-selected ' : 'type-not-selected')}`}
+              variant="outline-success"
+              onClick={() => setType('Studio')}>
+              <i className="fas fa-home"></i>
+            </Button>
+            <p>Studio</p>
+          </div>
+        </div>
+        {type && <Button variant="primary" type="button" className="registeration-button" onClick={validateType}>
+          Next &nbsp; 
+          <i className="fas fa-chevron-right"></i>
+        </Button>}
+      </div>
+    )
+  }
+
+  const userInfoForm = () => {
+    if (states[state] !== 'UserInfo') return null
+
+    return (
+      <div>
+        <FormControl
+          className="registeration-input"
+          type="text"
+          placeholder="username"
+          defaultValue={username ? username : ""}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+        <FormControl
+          className="registeration-input"
+          type="password"
+          placeholder="Password"
+          defaultValue={password ? password : ""}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        <FormControl
+          className="registeration-input"
+          type="text"
+          placeholder="Name"
+          defaultValue={name ? name : ""}
+          onChange={(event) => setName(event.target.value)}
+        />
+        <FormControl
+          className="registeration-input"
+          type="email"
+          placeholder="Email"
+          defaultValue={email ? email : ""}
+          onChange={(event) => setEmail(event.target.value)}
+        />
+        <Button variant="danger" className="registeration-button" onClick={setPrevState}>
             <i className="fas fa-chevron-left"></i>
             &nbsp; Back
           </Button>
-          <Button variant="primary" type="button" className="registeration-button" onClick={validateType}>
+          <Button variant="primary" type="submit" className="registeration-button" onClick={validateUserInfo}>
             Next &nbsp; 
             <i className="fas fa-chevron-right"></i>
           </Button>
         </div>
-      )
-    }
+    )
+  }     
 
-    const userInfoForm = () => {
-      if (states[state] !== 'UserInfo') return null
+  const locationForm = () => {
+    if (states[state] !== 'Location') return null
 
-      return (
-        <div>
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="username"
-            defaultValue={username ? username : ""}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="password"
-            placeholder="Password"
-            defaultValue={password ? password : ""}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="Name"
-            defaultValue={name ? name : ""}
-            onChange={(event) => setName(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="email"
-            placeholder="Email"
-            defaultValue={email ? email : ""}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          <Button variant="danger" className="registeration-button" onClick={setPrevState}>
-              <i className="fas fa-chevron-left"></i>
-              &nbsp; Back
-            </Button>
-            <Button variant="primary" type="submit" className="registeration-button" onClick={validateUserInfo}>
-              Next &nbsp; 
-              <i className="fas fa-chevron-right"></i>
-            </Button>
-          </div>
-      )
-    }     
-  
-    const locationForm = () => {
-      if (states[state] !== 'Location') return null
+    return (
+      <div>
+        <FormControl
+          className="registeration-input"
+          type="text"
+          placeholder="Address"
+          defaultValue={address ? address : ""}
+          onChange={(event) => setAddress(event.target.value)}
+        />
+        <FormControl
+          className="registeration-input"
+          type="text"
+          placeholder="Postal Code"
+          defaultValue={postalcode ? postalcode : ""}
+          onChange={(event) => setPostalcode(event.target.value)}
+        />
+        <FormControl
+          className="registeration-input"
+          type="text"
+          placeholder="City"
+          defaultValue={city ? city : ""}
+          onChange={(event) => setCity(event.target.value)}
+        />
+        <FormControl
+          className="registeration-input"
+          type="text"
+          placeholder="Country"
+          defaultValue={country ? country : ""}
+          onChange={(event) => setCountry(event.target.value)}
+        />
+        <Button variant="danger" className="registeration-button" onClick={setPrevState}>
+            <i className="fas fa-chevron-left"></i>
+            &nbsp; Back
+          </Button>
+          <Button variant="primary" type="submit" className="registeration-button" onClick={validateLocation}>
+            Next &nbsp; 
+            <i className="fas fa-chevron-right"></i>
+          </Button>
+        </div>
+    )
+  } 
 
-      return (
-        <div>
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="Address"
-            defaultValue={address ? address : ""}
-            onChange={(event) => setAddress(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="Postal Code"
-            defaultValue={postalcode ? postalcode : ""}
-            onChange={(event) => setPostalcode(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="City"
-            defaultValue={city ? city : ""}
-            onChange={(event) => setCity(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="Country"
-            defaultValue={country ? country : ""}
-            onChange={(event) => setCountry(event.target.value)}
-          />
-          <Button variant="danger" className="registeration-button" onClick={setPrevState}>
-              <i className="fas fa-chevron-left"></i>
-              &nbsp; Back
-            </Button>
-            <Button variant="primary" type="submit" className="registeration-button" onClick={validateLocation}>
-              Next &nbsp; 
-              <i className="fas fa-chevron-right"></i>
-            </Button>
-          </div>
-      )
-    } 
+  const profileInfoForm = () => {
+    if (states[state] !== 'ProfileInfo') return null
 
-    const profileInfoForm = () => {
-      if (states[state] !== 'ProfileInfo') return null
-
-      return (
-        <div>
-          <ReactTags
-            tags={tags}
-            suggestions={suggestions}
-            handleDelete={handleDelete.bind(this)}
-            handleAddition={handleAddition.bind(this)}
-            autofocus={false}
-            placeholder={'Add tag'}
-            addOnBlur={true}
-            allowNew={true}
-
-          />
+    return (
+      <div>
+        <ReactTags
+          tags={tags}
+          suggestions={suggestions}
+          handleDelete={handleDelete.bind(this)}
+          handleAddition={handleAddition.bind(this)}
+          autofocus={false}
+          placeholder={'Add tag'}
+          addOnBlur={true}
+          allowNew={true}
+        />
+        <Form onSubmit={addProfile}>
           <Form.Group>
             <Form.Control
               as="textarea"
@@ -257,35 +283,39 @@ const RegisterationForm = (props) => {
               placeholder="Description"
               defaultValue={description ? description : ""}
               onChange={(event) => setDescription(event.target.value)}
-             />
-          </Form.Group>
-
+              />
           <Button variant="danger" className="registeration-button" onClick={setPrevState}>
               <i className="fas fa-chevron-left"></i>
               &nbsp; Back
             </Button>
-            <Button variant="primary" type="submit" className="registeration-button" onClick={setNextState}>
+            <Button variant="primary" type="submit" className="registeration-button">
               Next &nbsp; 
               <i className="fas fa-chevron-right"></i>
             </Button>
-          </div>
-      )
-    } 
-
-    return (
-      <div className="registeration-form">
-        <p>Registeration</p>
-        {typeForm()}
-        {userInfoForm()}
-        {locationForm()}
-        {profileInfoForm()}
-        <Link to={previousUrl}>Cancel</Link>
-      </div>
+          </Form.Group>
+        </Form>
+        </div>
     )
-  }
+  } 
+
+  return (
+    <div className="registeration-form">
+      <p>Registeration</p>
+      {typeForm()}
+      {userInfoForm()}
+      {locationForm()}
+      {profileInfoForm()}
+      <Link to={previousUrl}>Cancel</Link>
+      {registerationDone &&  <Redirect to={previousUrl}/>}
+    </div>
+  )
+}
   
-  const ConnectedRegisterationForm = connect(
-    null, { setNotification }
-  )(RegisterationForm)
-  
-  export default ConnectedRegisterationForm
+const ConnectedRegisterationForm = connect(
+  null, {
+     setNotification,
+     userChange
+    }
+)(RegisterationForm)
+
+export default ConnectedRegisterationForm
