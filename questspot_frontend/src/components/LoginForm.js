@@ -15,14 +15,14 @@ const LoginForm = (props) => {
 
   if (!props.showLogin) return null
 
-  const [username, setUsername]  = useState('')
-  const [password, setPassword]  = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
       const user = await loginService.login({
-        username:username, password:password
+        username: username, password: password
       })
       console.log('user', user)
       window.localStorage.setItem(
@@ -64,8 +64,23 @@ const LoginForm = (props) => {
           <br></br>
           <Button variant="primary" type="submit" className="loginform-button">Submit</Button>
           <Button variant="danger" onClick={cancelLogin} className="loginform-button">Cancel</Button>
+
         </Form.Group>
       </Form>
+      <div className="scoopedBox">
+        <svg>
+          <mask id='m' fill='#fff'>
+            <rect id='b' width='100%' height='100%'/>
+            <circle id='c' r='50' fill='#000'/>
+            <use href='#c' x='100%'/>
+            <use href='#c' y='100%'/>
+            <use href='#c' x='100%' y='100%'/>
+          </mask>
+          <use href='#b' mask='url(#m)'/>
+        </svg>
+        <p>SCOOPITY SCOOP</p>
+      </div>
+
     </div>
   )
 }
