@@ -19,7 +19,6 @@ import { initializeProfiles } from './reducers/profilesReducer'
 import { initializeNews } from './reducers/newsReducer'
 
 import './styles/App.css'
-import logo from './resources/logo.png'
 
 const App = (props) => {
   const { profiles, news } = props
@@ -47,7 +46,6 @@ const App = (props) => {
           <LastLocationProvider>
             <div id="page-wrap">
               <div className="top-navi">
-                <img src={logo} className="App-logo" alt="logo" />
                 <Notification/>
               </div>
               <div className="main-content">

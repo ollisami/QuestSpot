@@ -7,6 +7,7 @@ import Authentication from './Authentication'
 import { setNotification } from '../reducers/notificationReducer'
 import { userChange } from '../reducers/userReducer'
 
+import logo from '../resources/logo.png'
 import '../styles/Sidebar.css'
 
 const Sidebar = (props) => {
@@ -31,11 +32,13 @@ const Sidebar = (props) => {
         <a className="menu-item" href="/">
           Home
         </a>
-
         <a className="menu-item" href="/profiles">
           Search
         </a>
       </Menu>
+      <div className="top-container">
+        <img src={logo} className="app-logo" alt="QuestSpot" />
+      </div>
     </div>
   )
 }

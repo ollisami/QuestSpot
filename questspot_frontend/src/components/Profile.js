@@ -6,8 +6,6 @@ import { Button, Carousel } from 'react-bootstrap'
 import { userChange } from '../reducers/userReducer'
 import profileService from '../services/profiles'
 
-import '../styles/Profiles.css'
-
 const Profile = (props) => {
   const { user } = props
   let profile = props.profile
@@ -56,7 +54,7 @@ const Profile = (props) => {
 
   return (
     <div key={profile.id}>
-      <Link to={useLastLocation()}>
+      <Link to={useLastLocation() ? useLastLocation() : '/'}>
         <div className="back-button">
           <i className="fas fa-arrow-left"></i>
         </div>
@@ -67,35 +65,37 @@ const Profile = (props) => {
           {mapProfileImages()}
         </Carousel>
       }
-      <div className="flex-grid">
-        <div className="col-button">
-          <Button
-            className={`round-button ${(userLikedProfile ? 'liked' : 'not-liked')}`}
-            variant="outline-success"
-            onClick={() => handleLikeButtonClick()}>
-            <i className="fas fa-thumbs-up"></i>
-          </Button>
-        </div>
-        <div className="col">
-          <div className="profile-name">
-            {profile.name}
+      <div className="profile-info-container">
+        <div className="flex-grid">
+          <div className="col-button">
+            <Button
+              className={`round-button ${(userLikedProfile ? 'liked' : 'not-liked')}`}
+              variant="outline-success"
+              onClick={() => handleLikeButtonClick()}>
+              <i className="fas fa-thumbs-up"></i>
+            </Button>
           </div>
-          <div className="profile-city">
-            {profile.city}, {profile.country}
+          <div className="col">
+            <div className="single-profile-name">
+              {profile.name}
+            </div>
+            <div className="profile-city">
+              {profile.city}, {profile.country}
+            </div>
+          </div>
+          <div className="col-button">
+            <Button className="round-button" variant="outline-danger">
+              <i className="fas fa-heart"></i>
+            </Button>
           </div>
         </div>
-        <div className="col-button">
-          <Button className="round-button" variant="outline-danger">
-            <i className="fas fa-heart"></i>
-          </Button>
+        <div className="profile-info">
+          <p>Likes: {likes}</p>
+          <p>{profile.description}</p>
+          <p>{profile.name}, {profile.username}</p>
+          <p>{profile.address}, {profile.postalCode}, {profile.city}, {profile.country}</p>
+          <p>{profile.tags}</p>
         </div>
-      </div>
-      <div className="profile-info">
-        <p>Likes: {likes}</p>
-        <p>{profile.description}</p>
-        <p>{profile.name}, {profile.username}</p>
-        <p>{profile.address}, {profile.postalCode}, {profile.city}, {profile.country}</p>
-        <p>{profile.tags}</p>
       </div>
     </div>
   )

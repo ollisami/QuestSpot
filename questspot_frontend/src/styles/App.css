@@ -13,29 +13,21 @@ body {
     font-size: 6vw;
     background-color: #425346;
     min-height: 100vh;
+    padding: 0;
   }
 
 .main-content {
-    padding-top: 20px;
-    background-color: #f0f0db;
-    border: 3px solid #b5ad9c;
-    border-radius: 25px;
+    padding-top: 100px;
+    background-color: #16261d;
     min-height: 400px;
 }
 
 .top-navi {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-}
-
-.App-logo {
-    height: 30vmin;
-    pointer-events: none;
+    margin-top: 0;
 }
 
 a {
-  color: #111111;
+  color: #ffffff;
   text-decoration: underline;
   background-color: transparent;
 }
