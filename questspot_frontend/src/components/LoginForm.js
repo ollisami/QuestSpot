@@ -9,8 +9,11 @@ import { setShowLogin } from '../reducers/loginReducer'
 import { setNotification } from '../reducers/notificationReducer'
 import { userChange } from '../reducers/userReducer'
 
+import ScoopedBoxFrame from './ScoopedBoxFrame'
+
 import '../styles/LoginForm.css'
 import '../styles/ScoopedFrame.css'
+
 
 const LoginForm = (props) => {
 
@@ -68,7 +71,7 @@ const LoginForm = (props) => {
 
         </Form.Group>
       </Form>
-      <ScoopedBoxFrame/>
+      <ScoopedBoxFrame radius={40} />
 
     </div>
   )
@@ -80,23 +83,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const ScoopedBoxFrame = () => {
-  return (
-    <div className="scoopedBox">
-      <svg>
-        <mask id='m' fill='#fff'>
-          <rect id='b' width='100%' height='100%' />
-          <circle id='c' r='50' fill='#000' />
-          <use href='#c' x='100%' />
-          <use href='#c' y='100%' />
-          <use href='#c' x='100%' y='100%' />
-        </mask>
-        <use href='#b' mask='url(#m)' />
-      </svg>
-      <p>SCOOPITY SCOOP</p>
-    </div>
-  )
-}
+
 
 const ConnectedLoginForm = connect(mapStateToProps,
   {

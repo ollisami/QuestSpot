@@ -1,20 +1,40 @@
 .scoopedBox {
-  position: relative; 
+  position: relative;
   top: 25%;
+
+  --radius: 3em;
+
   margin: .75em auto 0;
-  border-color: blue;
-  border: 100px;
-  /*padding: var(--r);*/
-  padding: 50px;
-  /*width: calc(100% - 2*var(--r) - 1em);*/
-  width: calc(100% - 2*50px - 1em);
+  width: calc(100% - 1*var(--radius) - 1em);
   max-width: 47em;
-  min-height: 10em;
+  min-height: 5em;
   color: #fff;
   font: 1em georgia;
+
 }
 
+[id='bc'] {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px)
+}
+[id='bb'] {
+  width: calc(100% - 12px);
+  height: calc(100% - 12px)
+}
 
+[id='m'] + use {
+  fill: rgba(0, 134, 40, 1)
+}
+[id='mb'] + use {
+  fill: rgb(255, 255, 255)
+}
+[id='mc'] + use {
+  fill: rgba(0, 134, 40, 1)
+}
+
+/*.scoopedBoxInner {
+
+}*/
 
 svg {
   position: absolute;
@@ -24,6 +44,3 @@ svg {
   height: 100%; 
 }
 
-[id='m'] + use {
-  fill: rgba(255,0,0,.85)
-}
