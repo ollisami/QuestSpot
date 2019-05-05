@@ -14,15 +14,17 @@ body {
     background-color: #425346;
     min-height: 100vh;
     padding: 0;
+    margin: 0;
+    min-width: 100vw;
   }
 
 .main-content {
-    padding-top: 100px;
+    padding-top: 6.5em;
     background-color: #16261d;
     min-height: 400px;
 }
 
-.top-navi {
+.top-notification {
     margin-top: 0;
 }
 

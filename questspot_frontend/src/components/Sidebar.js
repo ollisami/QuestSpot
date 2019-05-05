@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { slide as Menu } from 'react-burger-menu'
+import { Link, withRouter } from 'react-router-dom'
 
 import Authentication from './Authentication'
 
@@ -14,6 +15,7 @@ const Sidebar = (props) => {
   const { user } = props
 
   const renderUsername = () => {
+    console.log(props.location.pathname);
     if (user) {
       return (
         <a className="menu-item" href={`/profiles/${user.name}`}>
@@ -23,7 +25,6 @@ const Sidebar = (props) => {
     }
     return null
   }
-
   return (
     <div className="menu-background">
       <Menu>
@@ -32,12 +33,21 @@ const Sidebar = (props) => {
         <a className="menu-item" href="/">
           Home
         </a>
-        <a className="menu-item" href="/profiles">
+        <a className="menu-item" href="/profiles/">
           Search
         </a>
       </Menu>
       <div className="top-container">
         <img src={logo} className="app-logo" alt="QuestSpot" />
+      </div>
+      <div className="shortcuts">
+        <Link className={`shortcut-item ${props.location.pathname === '/' ? 'selected' : 'not-selected'}`} to="/">
+          <i className="far fa-newspaper"></i>
+        </Link>
+        
+        <Link className={`shortcut-item ${props.location.pathname === '/profiles/' ? 'selected' : 'not-selected'}`} to="/profiles/">
+          <i className="fas fa-search"></i>
+        </Link>
       </div>
     </div>
   )
@@ -54,4 +64,4 @@ const ConnectedAuthentication = connect(mapStateToProps, {
   userChange
 })(Sidebar)
 
-export default ConnectedAuthentication
+export default withRouter(ConnectedAuthentication)

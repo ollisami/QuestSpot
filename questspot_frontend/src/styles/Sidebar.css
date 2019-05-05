@@ -10,12 +10,33 @@
   display: flex;
   justify-content: center;
   height: 100%;
-  border-bottom: 5px solid #f0f0db;
 }
 
 .app-logo {
-  height: 25vmin;
+  height: 4em;
   pointer-events: none;
+}
+
+.shortcut-item {
+  width: 50%;
+  font-size: 1.5em;
+  text-align: center;
+  background-color: #436151;
+  border-left: 1px solid #f0f0db;
+  border-right: 1px solid #f0f0db;
+  transition: all 0.3s ease 0s;
+}
+
+.shortcut-item.selected {
+  background-color: #f37863;
+  color: white;
+}
+
+.shortcuts {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #f0f0db;
+  border-top: 2px solid #f0f0db;
 }
 
 #page-wrap {

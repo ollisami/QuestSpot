@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useLastLocation } from 'react-router-last-location'
 import { Button, Carousel } from 'react-bootstrap'
+
 import { userChange } from '../reducers/userReducer'
+import { setShowLogin } from '../reducers/loginReducer'
+
 import profileService from '../services/profiles'
 
 const Profile = (props) => {
@@ -44,7 +47,7 @@ const Profile = (props) => {
 
   const handleLikeButtonClick = async () => {
     if (!user) {
-      console.log('Error: Cant like without logging in')
+      props.setShowLogin(true)
       return
     }
     profile = await profileService.like(profile)
@@ -108,7 +111,8 @@ const mapStateToProps = (state) => {
 }
 
 const ConnectedProfile = connect(mapStateToProps, {
-  userChange
+  userChange,
+  setShowLogin
 })(Profile)
 
 export default ConnectedProfile
