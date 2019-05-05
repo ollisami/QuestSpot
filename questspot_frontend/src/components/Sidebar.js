@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { slide as Menu } from 'react-burger-menu'
 import { Link, withRouter } from 'react-router-dom'
-
+import Headroom from 'react-headroom'
 import Authentication from './Authentication'
 
 import { setNotification } from '../reducers/notificationReducer'
@@ -26,30 +26,34 @@ const Sidebar = (props) => {
     return null
   }
   return (
-    <div className="menu-background">
-      <Menu>
-        {renderUsername()}
-        <Authentication />
-        <a className="menu-item" href="/">
-          Home
-        </a>
-        <a className="menu-item" href="/profiles/">
-          Search
-        </a>
-      </Menu>
-      <div className="top-container">
-        <img src={logo} className="app-logo" alt="QuestSpot" />
+    
+      <div className="menu-background">
+        <Menu>
+          {renderUsername()}
+          <Authentication />
+          <a className="menu-item" href="/">
+            Home
+          </a>
+          <a className="menu-item" href="/profiles/">
+            Search
+          </a>
+        </Menu>
+        <Headroom>
+        <div className="top-container">
+          <img src={logo} className="app-logo" alt="QuestSpot" />
+        </div>
+        <div className="shortcuts">
+          <Link className={`shortcut-item ${props.location.pathname === '/' ? 'selected' : 'not-selected'}`} to="/">
+            <i className="far fa-newspaper"></i>
+          </Link>
+          
+          <Link className={`shortcut-item ${props.location.pathname === '/profiles/' ? 'selected' : 'not-selected'}`} to="/profiles/">
+            <i className="fas fa-search"></i>
+          </Link>
+        </div>
+        </Headroom>
       </div>
-      <div className="shortcuts">
-        <Link className={`shortcut-item ${props.location.pathname === '/' ? 'selected' : 'not-selected'}`} to="/">
-          <i className="far fa-newspaper"></i>
-        </Link>
-        
-        <Link className={`shortcut-item ${props.location.pathname === '/profiles/' ? 'selected' : 'not-selected'}`} to="/profiles/">
-          <i className="fas fa-search"></i>
-        </Link>
-      </div>
-    </div>
+   
   )
 }
 const mapStateToProps = (state) => {
