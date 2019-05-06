@@ -71,7 +71,7 @@ const LoginForm = (props) => {
 
         </Form.Group>
       </Form>
-      <ScoopedBoxFrame radius={40} />
+      <ScoopedBoxFrame radius={20} width='15%' type='cancelButton' />
 
     </div>
   )

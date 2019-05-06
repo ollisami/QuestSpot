@@ -5,7 +5,6 @@
   --radius: 3em;
 
   margin: .75em auto 0;
-  width: calc(100% - 1*var(--radius) - 1em);
   max-width: 47em;
   min-height: 5em;
   color: #fff;
@@ -22,15 +21,10 @@
   height: calc(100% - 12px)
 }
 
-[id='m'] + use {
+
+/*[id='mc'] + use {
   fill: rgba(0, 134, 40, 1)
-}
-[id='mb'] + use {
-  fill: rgb(255, 255, 255)
-}
-[id='mc'] + use {
-  fill: rgba(0, 134, 40, 1)
-}
+} was used to define fill color*/
 
 /*.scoopedBoxInner {
 
