@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import LazyLoad from 'react-lazy-load'
-import { Image} from 'react-bootstrap'
+import { Image } from 'react-bootstrap'
 import Loading from './Loading'
 
 
-const ImageLoader = ({ imgUrl, altText, child }) => {
+const ImageLoader = ({ imgUrl, child }) => {
   const [ loaded, setLoaded ] = useState(false)
 
   return (
@@ -15,11 +15,11 @@ const ImageLoader = ({ imgUrl, altText, child }) => {
             </div>
       }
       <LazyLoad>
-        <Image 
+        <Image
           src={imgUrl}
           onLoad={() => setLoaded(true)}
           fluid
-         />
+        />
       </LazyLoad>
       {child && child}
     </div>

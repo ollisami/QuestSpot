@@ -67,7 +67,6 @@ const Profiles = ({ profiles, filters }) => {
           {profile.images &&
             <ImageLoader
               imgUrl={profile.images[0]}
-              altText={profile.name}
               child={
                 <div className="profile-name">
                   < Link to={`/profile/${profile.username}`}>{profile.name}</Link>

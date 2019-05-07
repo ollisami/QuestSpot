@@ -1,5 +1,11 @@
 .registeration-form {
-    margin: 0em 1em;
+    margin: 0;
+    min-height: 80vh;
+}
+
+.registeration-form .input-form {
+    padding: 3em 1em;
+    position: relative;
 }
 
 .registeration-input {
@@ -15,17 +21,77 @@
     display: flex;
 }
 
-.type-button {
-    border-radius: 150px;
-    border: 0.1em solid;
-    height: 2em;
-    width: 2em;
-    font-size: 2.5em;
-    line-height: 0px;
-}
 
 .type-selected {
     color: #fff !important;
     background-color: #28a745 !important;
     border-color: #28a745 !important;
-  }
+}
+
+.type-button {
+    position: relative;
+}
+
+.type-button-image {
+    width: 100%;
+}
+
+.type-button-overlay {
+    transition: .5s ease;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #375244;
+    opacity: .8;
+}
+
+.type-button p {
+    color: white;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.type-button p.artist {
+    height: 10%;
+    margin: 0;
+    bottom: 0;
+    top: auto;
+}
+
+.type-button:hover .type-button-overlay {
+    background-color: #436151;
+    opacity: 0.3;
+}
+
+.bg-image-container {
+    height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    position: relative;
+}
+
+.bg-image {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.bg-image-overlay {
+    transition: .5s ease;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #375244;
+    opacity: .7;
+}
+

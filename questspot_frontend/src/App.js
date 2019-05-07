@@ -42,8 +42,8 @@ const App = (props) => {
       <LoginForm/>
       <Router>
         <div className="container" id="container">
-            <Sidebar pageWrapId={'page-wrap'} outerContainerId={'App'} />
-            <div>
+          <Sidebar pageWrapId={'page-wrap'} outerContainerId={'App'} />
+          <div>
             <LastLocationProvider>
               <div id="page-wrap">
                 <div className="top-notification">
