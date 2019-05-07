@@ -73,6 +73,8 @@ const LoginForm = (props) => {
       </Form>
       <ScoopedBoxFrame id='a' radius={20} width='30%' type='cancelButton' />
       <ScoopedBoxFrame id='b' radius={30} width='50%' />
+      <ScoopedBoxFrame id='prf' radius={30}
+        width='100%' height='20em' type='profileCard' />
 
     </div>
   )

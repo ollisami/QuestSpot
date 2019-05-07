@@ -7,7 +7,6 @@
   margin: .75em auto 0;
   max-width: 47em;
   min-height: 5em;
-  color: #fff;
   font: 1em georgia;
 
 }
@@ -16,8 +15,16 @@
   width: calc(100% - 12px);
   height: calc(100% - 12px)
 }
+.borderStartToEdge {
+  width: 100%;
+  height: calc(100% - 12px)
+}
 .borderEnd {
   width: calc(100% - 20px);
+  height: calc(100% - 20px)
+}
+.borderEndToEdge {
+  width: 100%;
   height: calc(100% - 20px)
 }
 
