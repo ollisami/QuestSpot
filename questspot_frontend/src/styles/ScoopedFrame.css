@@ -6,26 +6,39 @@
 
   margin: .75em auto 0;
   max-width: 47em;
-  min-height: 5em;
+  min-height: 1em;
   font: 1em georgia;
 
 }
 
-.borderStart {
+
+  
+
+.buttonBox p {
+  transform: translate(0px, 7px);
+  text-align: center
+}
+
+.buttonBox .borderStart {
   width: calc(100% - 12px);
-  height: calc(100% - 12px)
+  height: calc(100% - 12px);
+  transform: translate(6px, 6px)
 }
-.borderStartToEdge {
-  width: 100%;
-  height: calc(100% - 12px)
-}
-.borderEnd {
+.buttonBox .borderEnd {
   width: calc(100% - 20px);
-  height: calc(100% - 20px)
+  height: calc(100% - 20px);
+  transform: translate(10px, 10px);
 }
-.borderEndToEdge {
+
+.profileCardBox .borderStart {
   width: 100%;
-  height: calc(100% - 20px)
+  height: calc(100% - 12px);
+  transform: translate(0px, 6px)
+}
+.profileCardBox .borderEnd {
+  width: 100%;
+  height: calc(100% - 20px);
+  transform: translate(0px, 10px)
 }
 
 
