@@ -12,14 +12,15 @@
 
 }
 
-[id='bc'] {
-  width: calc(100% - 20px);
-  height: calc(100% - 20px)
-}
-[id='bb'] {
+.borderStart {
   width: calc(100% - 12px);
   height: calc(100% - 12px)
 }
+.borderEnd {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px)
+}
+
 
 
 /*[id='mc'] + use {
