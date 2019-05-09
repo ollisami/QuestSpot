@@ -1,29 +1,41 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const ScoopedBoxFrame = ({ id, textContent, clickEvent, radius, type, width, height }) => {
-  const [primaryColorState, setPrimaryColor] = useState('28a745')
+const ScoopedBoxFrame = (
+  { id, textContent, clickEvent, radius, type, top, width, height }) => {
+  //const [primaryColorState, setPrimaryColor] = useState('28a745')
 
   //specifiable values/colors and their default values 
-  let primaryColor = '#28a745'
+  let primaryColor = '#156327'
   let borderColor = '#ffffff'
   let textColor = '#ffffff'
 
-  const changeColor = () => {
+
+  /*const changeColor = () => {
     const colors = [primaryColor, '#202020']
     if (primaryColor === colors[0]){
       setPrimaryColor(colors[1])
     } else if (primaryColor === colors[1]){
       setPrimaryColor(colors[0])
     }
-  }
+  }*/
 
-  let frameType = 'buttonBox'
+  let frameType = 'frameBox'
+  let clickable = false;
+
 
   if (type === 'cancelButton') {
     textContent = 'CANCEL'
     frameType = 'buttonBox'
-    primaryColor = '#ff0000'
-  } 
+    primaryColor = '#aa0000'
+    clickable = true;
+  }
+
+  else if (type === 'submitButton') {
+    textContent = 'SUBMIT'
+    frameType = 'buttonBox'
+    primaryColor = '#0000aa'
+    clickable = true;
+  }
 
   else if (type === 'profileCard') {
     frameType = 'profileCardBox'
@@ -31,21 +43,29 @@ const ScoopedBoxFrame = ({ id, textContent, clickEvent, radius, type, width, hei
     borderColor = '#425346'
     textColor = '#000000'
 
-  } 
+  }
 
   else if (type === 'newsCard') {
     primaryColor = '#f7f0e2'
     borderColor = '#425346'
     textColor = '#000000'
-
   }
 
+  let clickability = 'scoopedBox'
+  if (clickable) {
+    clickability = 'scoopedBoxClickable'
+  } 
+
   const frameStyle = {
+    top: top,
     padding: radius + 4,
     width: width,
     height: height,
-    color: textColor
+    color: textColor,
+    //pointer-events: none; React doesn't support these prefixes apparently
   }
+
+  console.log(frameStyle)
 
   //original id's in the order that they are used
   const ids = [
@@ -55,11 +75,11 @@ const ScoopedBoxFrame = ({ id, textContent, clickEvent, radius, type, width, hei
   ]
   //18 total, is there a more elegant solution?
   const uid = ids.map(i => i + id)
-  console.log(uid)
 
   return (
-    <div className="scoopedBox" style={frameStyle} onClick={clickEvent} >
-      
+    <div className={clickability}
+      style={frameStyle} onClick={clickEvent} >
+
       <div className={frameType}>
         <svg>
           <mask id={uid[0]} fill='#fff'>
@@ -70,7 +90,7 @@ const ScoopedBoxFrame = ({ id, textContent, clickEvent, radius, type, width, hei
             <use href={uid[3]} x='100%' y='100%' />
           </mask>
           <use href={uid[4]} mask={`url(${uid[5]})`} fill={primaryColor} />
-          
+
 
           <mask id={uid[6]} fill='#fff'>
             <rect className="borderStart" id={uid[7]} />
@@ -89,6 +109,7 @@ const ScoopedBoxFrame = ({ id, textContent, clickEvent, radius, type, width, hei
             <use href={uid[15]} x='100%' y='100%' />
           </mask>
           <use href={uid[16]} mask={`url(${uid[17]})`} fill={primaryColor} />
+          <rect className="imagePlaceholder" y={radius} />
         </svg>
         <p>{textContent}</p>
       </div>

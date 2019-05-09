@@ -50,47 +50,40 @@ const LoginForm = (props) => {
   }
 
   // test text content for frames
-  const cancelText = 'cancel'
-  const scoopHype = 'SCOOP SCOOP'
-  const profileText = 'This text is placeholder for a profile image'
+
 
   return (
     <div className="login-form">
-      <Form onSubmit={handleLogin} className="overlay-content">
-        <Form.Group>
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="username"
-            onChange={(event) => setUsername(event.target.value)}
-          />
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <br></br>
-          <Button variant="primary" type="submit" className="loginform-button">Submit</Button>
-          <Button variant="danger" onClick={cancelLogin} className="loginform-button">Cancel</Button>
+      <div style={{maxWidth: '40em'}}>
+        <Form onSubmit={handleLogin} className="overlay-content">
+          <Form.Group>
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="username"
+              onChange={(event) => setUsername(event.target.value)}
+            />
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <br></br>
 
-        </Form.Group>
-      </Form>
-
-      <CustomButton text={cancelText} cancelLogin={cancelLogin} />
-      <CustomButton text={cancelText} cancelLogin={cancelLogin} />
-      <ScoopedBoxFrame id='b' textContent={scoopHype} radius={30} width='50%' />
-      <ScoopedBoxFrame id='prf' textContent={profileText} radius={30}
-        width='100%' height='20em' type='profileCard' />
-
+          </Form.Group>
+        </Form>
+        <ScoopedBoxFrame radius={20} top='-2em' width='95%' height='20em' />
+        <div style={{
+          display: 'flex', marginLeft: '3em', marginRight: '3em'
+        }}>
+          <ScoopedBoxFrame id='canc' textContent='SUBMIT' radius={20}
+            top='-10em' width='7em' type='submitButton' clickEvent={handleLogin} />
+          <ScoopedBoxFrame id='canc' textContent='CANCEL' radius={20}
+            top='-10em' width='7em' type='cancelButton' clickEvent={cancelLogin} />
+        </div>
+      </div>
     </div>
-  )
-}
-
-const CustomButton = ({ text, cancelLogin }) => {
-  return (
-      <ScoopedBoxFrame id='custom' textContent={text}
-        radius={20} width='30%' type='cancelButton' clickEvent={cancelLogin}/>
   )
 }
 

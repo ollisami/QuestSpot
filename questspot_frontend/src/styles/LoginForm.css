@@ -13,10 +13,17 @@
 }
 
 .overlay-content {
+    justify-content: center;
+    max-width: 40em;
     position: relative;
-    top: 25%;
+    top: 12em;
     text-align: center;
     margin: 2em;
+    color: #ffffff;
+}
+.overlay-content label {
+    margin: .3rem;
+    font: 1.2em georgia
 }
 
 .loginform-button {

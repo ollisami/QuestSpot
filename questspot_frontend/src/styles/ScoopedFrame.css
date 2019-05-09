@@ -1,18 +1,39 @@
-.scoopedBox {
+.scoopedBox, .scoopedBoxClickable {
+  pointer-events: none;
   position: relative;
-  top: 25%;
-
   --radius: 3em;
 
   margin: .75em auto 0;
   max-width: 47em;
   min-height: 1em;
   font: 1em georgia;
+}
+.scoopedBox {
+  pointer-events: none;
+}
+.scoopedBoxClickable {
+  pointer-events: all;
 
 }
 
 
-  
+
+.frameBox {
+  pointer-events: none;
+  z-index: -2;
+}
+
+.frameBox .borderStart {
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  transform: translate(6px, 6px)
+}
+.frameBox .borderEnd {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  transform: translate(10px, 10px);
+}
+
 
 .buttonBox p {
   transform: translate(0px, 7px);
@@ -41,6 +62,12 @@
   transform: translate(0px, 10px)
 }
 
+.profileCardBox .imagePlaceholder {
+  color: '#777777';
+  width: 100%;
+  height: calc(width + 5em); 
+}
+
 
 
 /*[id='mc'] + use {
@@ -50,6 +77,11 @@
 /*.scoopedBoxInner {
 
 }*/
+
+.frameBox svg {
+  z-index: -2;
+  pointer-events: none
+}
 
 svg {
   position: absolute;
