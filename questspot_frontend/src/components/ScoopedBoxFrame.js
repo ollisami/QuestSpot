@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ScoopedBoxFrame = (
-  { id, textContent, clickEvent, radius, type, top, width, height }) => {
+  { id, children, textContent, clickEvent, radius, type, top, width, height }) => {
   //const [primaryColorState, setPrimaryColor] = useState('28a745')
 
   //specifiable values/colors and their default values 
@@ -78,7 +78,7 @@ const ScoopedBoxFrame = (
 
   return (
     <div className={clickability}
-      style={frameStyle} onClick={clickEvent} >
+      onClick={clickEvent} >
 
       <div className={frameType}>
         <svg>
@@ -94,7 +94,7 @@ const ScoopedBoxFrame = (
 
           <mask id={uid[6]} fill='#fff'>
             <rect className="borderStart" id={uid[7]} />
-            <circle id={uid[8]} r={radius + 6} fill='#000' />
+            <circle id={uid[8]} r={radius} fill='#000' />
             <use href={uid[9]} x='100%' />
             <use href={uid[9]} y='100%' />
             <use href={uid[9]} x='100%' y='100%' />
@@ -103,7 +103,7 @@ const ScoopedBoxFrame = (
 
           <mask id={uid[12]} fill='#fff'>
             <rect className="borderEnd" id={uid[13]} />
-            <circle id={uid[14]} r={radius + 10} fill='#000' />
+            <circle id={uid[14]} r={radius + 3} fill='#000' />
             <use href={uid[15]} x='100%' />
             <use href={uid[15]} y='100%' />
             <use href={uid[15]} x='100%' y='100%' />
@@ -111,7 +111,7 @@ const ScoopedBoxFrame = (
           <use href={uid[16]} mask={`url(${uid[17]})`} fill={primaryColor} />
           <rect className="imagePlaceholder" y={radius} />
         </svg>
-        <p>{textContent}</p>
+        {children ? children : <p>{textContent}</p>}
       </div>
     </div>
   )

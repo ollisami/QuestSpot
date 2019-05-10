@@ -49,39 +49,43 @@ const LoginForm = (props) => {
     props.setShowLogin(false)
   }
 
-  // test text content for frames
-
-
   return (
     <div className="login-form">
-      <div style={{maxWidth: '40em'}}>
-        <Form onSubmit={handleLogin} className="overlay-content">
-          <Form.Group>
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="username"
-              onChange={(event) => setUsername(event.target.value)}
+      <div className="login-container">
+      <ScoopedBoxFrame
+      radius={20}
+      children = {
+        <div>
+          <Form onSubmit={handleLogin} className="overlay-content">
+            <Form.Group>
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="username"
+                onChange={(event) => setUsername(event.target.value)}
+              />
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </Form.Group>
+          </Form>
+          <div className="login-form-button-container">
+            <ScoopedBoxFrame 
+              id='canc' 
+              textContent='SUBMIT' 
+              radius={20}
+              type='submitButton' 
+              clickEvent={handleLogin} 
             />
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(event) => setPassword(event.target.value)}
-            />
-            <br></br>
-
-          </Form.Group>
-        </Form>
-        <ScoopedBoxFrame radius={20} top='-2em' width='95%' height='20em' />
-        <div style={{
-          display: 'flex', marginLeft: '3em', marginRight: '3em'
-        }}>
-          <ScoopedBoxFrame id='canc' textContent='SUBMIT' radius={20}
-            top='-10em' width='7em' type='submitButton' clickEvent={handleLogin} />
-          <ScoopedBoxFrame id='canc' textContent='CANCEL' radius={20}
-            top='-10em' width='7em' type='cancelButton' clickEvent={cancelLogin} />
+            <ScoopedBoxFrame id='canc' textContent='CANCEL' radius={20}
+              top='-10em' width='7em' type='cancelButton' clickEvent={cancelLogin} />
+          </div>
         </div>
+      }
+      />
       </div>
     </div>
   )

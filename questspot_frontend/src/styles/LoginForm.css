@@ -15,10 +15,9 @@
 .overlay-content {
     justify-content: center;
     max-width: 40em;
-    position: relative;
     top: 12em;
     text-align: center;
-    margin: 2em;
+    padding: 2em;
     color: #ffffff;
 }
 .overlay-content label {
@@ -29,4 +28,17 @@
 .loginform-button {
     margin: 0.5em;
     padding: 0.5em !important;
+}
+
+.login-form-button-container {
+    position: relative;
+    height: 75px;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-evenly;
+    margin-bottom: 2em;
+}
+
+.login-container {
+    margin: 5em 1em;
 }
