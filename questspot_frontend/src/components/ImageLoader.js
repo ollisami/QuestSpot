@@ -1,27 +1,27 @@
 import React, { useState } from 'react'
 import LazyLoad from 'react-lazy-load'
+import { Image } from 'react-bootstrap'
 import Loading from './Loading'
 
 
-const ImageLoader = ({ imgUrl, altText }) => {
+const ImageLoader = ({ imgUrl, child }) => {
   const [ loaded, setLoaded ] = useState(false)
 
   return (
-    <div>
+    <div className="img-container">
       {!loaded &&
             <div className="loadingContainer" width="100%" height="300px">
               <Loading color="#d1d1d1" type="spin"/>
             </div>
       }
       <LazyLoad>
-        <img
+        <Image
           src={imgUrl}
-          alt={altText}
           onLoad={() => setLoaded(true)}
-          width="100%"
-          height="auto"
+          fluid
         />
       </LazyLoad>
+      {child && child}
     </div>
   )
 }

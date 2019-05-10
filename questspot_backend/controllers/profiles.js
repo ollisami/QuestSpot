@@ -55,6 +55,7 @@ profileRouter.post('/', async (request, response) => {
         !body.city ||
         !body.email
     ) {
+      console.log("this is wrong", body)
       response.status(400).send({ error: 'Missing required data' })
       response.send()
       return
@@ -75,6 +76,7 @@ profileRouter.post('/', async (request, response) => {
 
     response.json(savedProfile)
   } catch (exception) {
+    console.log(exception.message)
     response.status(400).send({ error: exception.message })
   }
 })

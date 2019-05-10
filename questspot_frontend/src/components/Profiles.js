@@ -67,15 +67,17 @@ const Profiles = ({ profiles, filters }) => {
           {profile.images &&
             <ImageLoader
               imgUrl={profile.images[0]}
-              altText={profile.name}
+              child={
+                <div className="profile-name">
+                  < Link to={`/profile/${profile.username}`}>{profile.name}</Link>
+                  <div className="profile-city">
+                    {profile.city}, {profile.country}
+                  </div>
+                </div>
+              }
             />
           }
-          <div className="profile-name">
-            <Link to={`/profile/${profile.username}`}>{profile.name}</Link>
-          </div>
-          <div className="profile-city">
-            {profile.city}, {profile.country}
-          </div>
+
           <div className="bottom-border" />
         </div>
       )
