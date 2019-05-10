@@ -1,23 +1,62 @@
+.single-profile-name {
+  font-weight: bold;
+  font-size: 0.8em;
+  padding-top: 10px;
+  color: #67655e;
+}
+
+.profile-info-container {
+  background-color: #f0f0db;
+  color: #a1a193;
+  font-family: Georgia;
+}
+
+.profile-container {
+  padding: 0;
+}
+
 .profile-name {
-    font-size: 6vw;
-    margin-left: 0.5em;
-    text-align: center;  }
+  text-align: left;
+  width: 100%;
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  padding-left: 30px;
+  color: white;
+  text-decoration: unset;
+  font-family: Georgia;
+  font-weight: bold;
+  font-size: 1em;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.0) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.0) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+.profile-name a {
+  text-decoration: unset;
+}
 
 .profile-city {
     font-size: 4vw;
-    margin-left: 0.5em;
-    text-align: center;
   }
 
 .profile-info {
   font-size: 3vw;
   text-align: left;
+  padding: 15px;
 }
 
 .bottom-border {
-  margin-bottom: 1em;
-  margin-top: 0.5em;
-  border-top: 3px solid #b5ad9c;
+  background-color: #ffffff;
+  height: 15px;
+}
+
+.top-border {
+  background-color: #f0f0db;
+  height: 10px;
+  border-bottom: 3px solid #375244;
 }
 
 .react-tags {
@@ -112,10 +151,10 @@
   top: 100%;
   left: 0;
   width: 100%;
+  z-index: 1;
 }
 
 .react-tags__suggestions ul {
-  margin: 4px -1px;
   padding: 0;
   list-style: none;
   background: white;
@@ -127,6 +166,7 @@
 .react-tags__suggestions li {
   border-bottom: 1px solid #ddd;
   padding: 6px 8px;
+  text-align: left;
 }
 
 .react-tags__suggestions li mark {
