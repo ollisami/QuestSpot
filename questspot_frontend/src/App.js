@@ -39,9 +39,9 @@ const App = (props) => {
 
   return (
     <div id="App">
-      <LoginForm/>
       <Router>
         <div className="container" id="container">
+        <LoginForm/>
           <Sidebar pageWrapId={'page-wrap'} outerContainerId={'App'} />
           <div>
             <LastLocationProvider>
@@ -58,7 +58,7 @@ const App = (props) => {
                     <Profiles profiles={profiles} filters={splitFilters(match.params.filters)} />} />
                   <Route path="/profile/:username" render={({ match }) =>
                     <Profile profile={profileByUsername(match.params.username)} />} />
-                  <Route exact path="/registeration/" render={() =>
+                  <Route exact path="/registration/" render={() =>
                     <RegisterationForm />} />
                 </div>
               </div>

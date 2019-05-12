@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ReactTags from 'react-tag-autocomplete'
+import { Link } from 'react-router-dom'
 import tagService from '../services/tags'
 import ImageLoader from './ImageLoader'
+import ScoopedBoxFrame from './ScoopedBoxFrame'
+
 import '../styles/Profiles.css'
-import { Link } from 'react-router-dom'
 
 
 const Profiles = ({ profiles, filters }) => {
@@ -63,7 +65,17 @@ const Profiles = ({ profiles, filters }) => {
   const mapping = () => {
     return (
       filteredProfiles().map(profile =>
-        <div key={profile.id}>
+        <div key={profile.id} className="profile-element">
+          <ScoopedBoxFrame 
+            id={profile.id + "top"}
+            radius={20}
+            borderColor="#f0f0db"
+            primaryColor="#425346"
+            type="top"
+            children = {
+              <div className="bottom-border" />
+            }
+          />
           {profile.images &&
             <ImageLoader
               imgUrl={profile.images[0]}
@@ -77,8 +89,16 @@ const Profiles = ({ profiles, filters }) => {
               }
             />
           }
-
-          <div className="bottom-border" />
+          <ScoopedBoxFrame 
+            id={profile.id  + "bottom"}
+            radius={20}
+            borderColor="#f0f0db"
+            primaryColor="#425346"
+            type="bottom"
+            children = {
+              <div className="bottom-border" />
+            }
+          />
         </div>
       )
     )

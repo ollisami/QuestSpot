@@ -26,6 +26,7 @@ const Profile = (props) => {
     profile = await profileService.getOne(id)
     setLikes(profile.likes.length)
     setUserLikedProfile(user && profile.likes.includes(user.username))
+    window.scrollTo(0, 0)
   }
 
   const mapProfileImages = () => {
@@ -57,12 +58,6 @@ const Profile = (props) => {
 
   return (
     <div key={profile.id}>
-      <Link to={useLastLocation() ? useLastLocation() : '/'}>
-        <div className="back-button">
-          <i className="fas fa-arrow-left"></i>
-        </div>
-      </Link>
-
       {profile.images &&
         <Carousel interval={null}>
           {mapProfileImages()}
@@ -100,6 +95,11 @@ const Profile = (props) => {
           <p>{profile.tags}</p>
         </div>
       </div>
+      <Link to={useLastLocation() ? useLastLocation() : '/'}>
+        <div className="back-button">
+          <i className="fas fa-arrow-left"></i>
+        </div>
+      </Link>
     </div>
   )
 }

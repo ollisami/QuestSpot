@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Form, Button, FormControl } from 'react-bootstrap'
+import { Form, FormControl, Image } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 import { useLastLocation } from 'react-router-last-location'
 import ReactTags from 'react-tag-autocomplete'
+import ScoopedBoxFrame from './ScoopedBoxFrame'
 
 import tagService from '../services/tags'
 import profileService from '../services/profiles'
@@ -157,21 +158,29 @@ const RegisterationForm = (props) => {
     if (states[state] !== 'Type') return null
 
     return (
-      <div>
+      <div className="type-button-container">
         <div className='type-button' onClick={() => setType('Artist')}>
-          <img src={artistBG} className="type-button-image" alt="Artist" />
+          <Image src={artistBG} className="type-button-image" alt="Artist" fluid/>
           <p className="artist">Artist</p>
           <div className="type-button-overlay" />
         </div>
         <div className='type-button' onClick={() => setType('Studio')}>
-          <img src={studioBG} className="type-button-image" alt="Studio" />
+          <Image src={studioBG} className="type-button-image" alt="Studio" fluid/>
           <p className="studio">Studio</p>
           <div className="type-button-overlay" />
         </div>
-        {type && <Button variant="primary" type="button" className="registeration-button" onClick={validateType}>
-          Next &nbsp;
-          <i className="fas fa-chevron-right"></i>
-        </Button>}
+        {type && <ScoopedBoxFrame 
+            id='submit' 
+            radius={20}
+            primaryColor="#436151"
+            clickEvent={validateType}
+            type="box"
+            children = {
+              <div className="button-label">
+               <p>Next</p> 
+              </div>
+            }
+          />}
       </div>
     )
   }
@@ -210,14 +219,28 @@ const RegisterationForm = (props) => {
             defaultValue={email ? email : ''}
             onChange={(event) => setEmail(event.target.value)}
           />
-          <Button variant="danger" className="registeration-button" onClick={setPrevState}>
-            <i className="fas fa-chevron-left"></i>
-            &nbsp; Back
-          </Button>
-          <Button variant="primary" type="submit" className="registeration-button" onClick={validateUserInfo}>
-            Next &nbsp;
-            <i className="fas fa-chevron-right"></i>
-          </Button>
+          <ScoopedBoxFrame 
+            id='next' 
+            radius={20}
+            primaryColor="#436151"
+            clickEvent={validateUserInfo}
+            type="box"
+            children = {
+              <div className="button-label">
+               <p>Next</p> 
+              </div>
+            }/>
+          <ScoopedBoxFrame 
+            id='back' 
+            radius={20}
+            primaryColor="#f37863"
+            clickEvent={setPrevState}
+            type="box"
+            children = {
+              <div className="button-label">
+               <p>Back</p> 
+              </div>
+            }/>
         </div>
       )
     )
@@ -257,14 +280,28 @@ const RegisterationForm = (props) => {
             defaultValue={country ? country : ''}
             onChange={(event) => setCountry(event.target.value)}
           />
-          <Button variant="danger" className="registeration-button" onClick={setPrevState}>
-            <i className="fas fa-chevron-left"></i>
-            &nbsp; Back
-          </Button>
-          <Button variant="primary" type="submit" className="registeration-button" onClick={validateLocation}>
-            Next &nbsp;
-            <i className="fas fa-chevron-right"></i>
-          </Button>
+          <ScoopedBoxFrame 
+            id='next' 
+            radius={20}
+            primaryColor="#436151"
+            clickEvent={validateLocation}
+            type="box"
+            children = {
+              <div className="button-label">
+               <p>Next</p> 
+              </div>
+            }/>
+          <ScoopedBoxFrame 
+            id='back' 
+            radius={20}
+            primaryColor="#f37863"
+            clickEvent={setPrevState}
+            type="box"
+            children = {
+              <div className="button-label">
+               <p>Back</p> 
+              </div>
+            }/>
         </div>
       )
     )
@@ -295,14 +332,29 @@ const RegisterationForm = (props) => {
                 defaultValue={description ? description : ''}
                 onChange={(event) => setDescription(event.target.value)}
               />
-              <Button variant="danger" className="registeration-button" onClick={setPrevState}>
-                <i className="fas fa-chevron-left"></i>
-              &nbsp; Back
-              </Button>
-              <Button variant="primary" type="submit" className="registeration-button">
-              Next &nbsp;
-                <i className="fas fa-chevron-right"></i>
-              </Button>
+
+            <ScoopedBoxFrame 
+              id='next' 
+              radius={20}
+              primaryColor="#436151"
+              clickEvent={addProfile}
+              type="box"
+              children = {
+                <div className="button-label">
+                <p>Next</p> 
+                </div>
+            }/>
+            <ScoopedBoxFrame 
+              id='back' 
+              radius={20}
+              primaryColor="#f37863"
+              clickEvent={setPrevState}
+              type="box"
+              children = {
+                <div className="button-label">
+                <p>Back</p> 
+                </div>
+              }/>
             </Form.Group>
           </Form>
         </div>

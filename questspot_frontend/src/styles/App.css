@@ -11,7 +11,7 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
     font-size: 6vw;
-    background-color: #425346;
+    background-color: #253128;
     min-height: 100vh;
     padding: 0;
     margin: 0;
@@ -19,7 +19,7 @@ body {
   }
 
 .main-content {
-    background-color: #16261d;
+    background-color: #253128;
     min-height: 400px;
 }
 

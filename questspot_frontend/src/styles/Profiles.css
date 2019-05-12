@@ -49,14 +49,8 @@
 }
 
 .bottom-border {
-  background-color: #ffffff;
-  height: 15px;
-}
-
-.top-border {
-  background-color: #f0f0db;
-  height: 10px;
-  border-bottom: 3px solid #375244;
+  background-color: #253128;
+  height: 1em;
 }
 
 .react-tags {
@@ -190,6 +184,7 @@
 .back-button {
   padding: 0 0.5em;
   text-align: left;
+  background-color: #375244;
 }
 
 .round-button {
