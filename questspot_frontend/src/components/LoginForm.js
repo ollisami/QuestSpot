@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
+import { withRouter } from 'react-router-dom'
 
 import loginService from '../services/login'
 import profileService from '../services/profiles'
@@ -49,43 +50,55 @@ const LoginForm = (props) => {
     props.setShowLogin(false)
   }
 
+  const redirectToRegisteration = () => {
+    cancelLogin()
+    props.history.push('/registration')
+  }
+
   return (
     <div className="login-form">
       <div className="login-container">
-      <ScoopedBoxFrame
-      radius={20}
-      children = {
-        <div>
-          <Form onSubmit={handleLogin} className="overlay-content">
-            <Form.Group>
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="username"
-                onChange={(event) => setUsername(event.target.value)}
+        <ScoopedBoxFrame
+        id="Background"
+        radius={20}
+        children = {
+          <div className="login-fields">
+            <Form onSubmit={handleLogin} className="overlay-content">
+              <Form.Group>
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="username"
+                  onChange={(event) => setUsername(event.target.value)}
+                />
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+              </Form.Group>
+            </Form>
+            <div className="login-form-button-container">
+              <ScoopedBoxFrame 
+                id='submit' 
+                textContent='Log in' 
+                radius={20}
+                primaryColor="#436151"
+                clickEvent={handleLogin}
+                type="box"
               />
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                onChange={(event) => setPassword(event.target.value)}
-              />
-            </Form.Group>
-          </Form>
-          <div className="login-form-button-container">
-            <ScoopedBoxFrame 
-              id='canc' 
-              textContent='SUBMIT' 
-              radius={20}
-              type='submitButton' 
-              clickEvent={handleLogin} 
-            />
-            <ScoopedBoxFrame id='canc' textContent='CANCEL' radius={20}
-              top='-10em' width='7em' type='cancelButton' clickEvent={cancelLogin} />
+              <ScoopedBoxFrame
+                id='signup'
+                textContent='Sign up'
+                radius={20}
+                primaryColor="#f37863"
+                clickEvent={redirectToRegisteration} />
+            </div>
+            <Button variant="link" onClick={cancelLogin}>Cancel</Button>
           </div>
-        </div>
-      }
-      />
+        }
+        />
       </div>
     </div>
   )
@@ -107,4 +120,4 @@ const ConnectedLoginForm = connect(mapStateToProps,
   }
 )(LoginForm)
 
-export default ConnectedLoginForm
+export default withRouter(ConnectedLoginForm)

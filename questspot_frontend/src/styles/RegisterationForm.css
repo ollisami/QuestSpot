@@ -3,6 +3,11 @@
     min-height: 80vh;
 }
 
+.type-button-container {
+    flex-direction: row;
+    align-items: stretch;
+}
+
 .registeration-form .input-form {
     padding: 3em 1em;
     position: relative;
@@ -21,6 +26,9 @@
     display: flex;
 }
 
+.button-label {
+    height: 2.5em;
+}
 
 .type-selected {
     color: #fff !important;
@@ -93,5 +101,13 @@
     left: 0;
     background-color: #375244;
     opacity: .7;
+}
+
+.registeration-form .scoopedBoxClickable {
+    margin: 1em 0;
+}
+
+.registeration-form .type-button-container .scoopedBoxClickable {
+    bottom: 2em;
 }
 

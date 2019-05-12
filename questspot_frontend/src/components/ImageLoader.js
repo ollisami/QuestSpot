@@ -10,7 +10,7 @@ const ImageLoader = ({ imgUrl, child }) => {
   return (
     <div className="img-container">
       {!loaded &&
-            <div className="loadingContainer" width="100%" height="300px">
+            <div className="loading-container" style={{height:"10em", paddingTop: "20%"}}>
               <Loading color="#d1d1d1" type="spin"/>
             </div>
       }

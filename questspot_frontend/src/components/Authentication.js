@@ -31,15 +31,11 @@ const Authentication = (props) => {
 
   const loginInformation = () => {
     if (!user) {
-      return (
-        <p>
-          <Button variant="link" onClick={() => props.setShowLogin(true)}>Log in</Button>
-        </p>
-      )
+      return  null
     }
     return (
       <p>
-        <Button variant="link" onClick={() => handleLogout()}>logout</Button>
+        <Button variant="link" onClick={() => handleLogout()}>log out</Button>
       </p>
     )
   }

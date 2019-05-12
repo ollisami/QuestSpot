@@ -7,7 +7,7 @@
   position: relative;
   height: 100%;
   width: 100%;
-  margin: 0 1em;
+  margin: 0 0.5em;
 }
 
 .frameBox {
@@ -16,12 +16,7 @@
   height: 100%;
 }
 
-.buttonBox {
-  height: 100%;
-  width: 100%;
-}
-
-.buttonBox p {
+.frameBox p {
   text-align: center;
   margin: 0;
   color: white;
@@ -29,6 +24,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-size: 0.8em;
 }
 
 .borderStart {
@@ -52,13 +48,6 @@
   position: absolute;
   height: 100%;
   width: 100%;
-}
-
-svg {
-  position: absolute;
-
-  z-index: -1;
-  width: 100%;
-  height: 100%; 
+  left: 0;
 }
 
