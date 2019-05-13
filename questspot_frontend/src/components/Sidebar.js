@@ -49,7 +49,7 @@ const Sidebar = (props) => {
     )
   }
   return (
-
+    
     <div className="menu-background">
       <Menu isOpen={ isMenuOpen } onStateChange={(state) => handleStateChange(state)}>
         {renderUsername()}
@@ -61,8 +61,28 @@ const Sidebar = (props) => {
             Search
         </Link>
       </Menu>
-      <Headroom>
-        <div className="top-container">
+      <Headroom style={{height: '5em'}}>
+          <HeaderMenu />
+      </Headroom>
+    </div>
+
+  )
+}
+
+const HeaderMenu = () => {
+
+  return (
+    <div width='100%' height='5em'>
+      <svg width='100%' height='5em'>
+        <rect width='100%' height='50%' fill='green' />
+        <ellipse cx='50%' cy='50%' rx='40%' ry='50%' fill='green' />
+      </svg>
+    </div>
+  )
+}
+
+/* Old header
+<div className="top-container">
           <img src={logo} className="app-logo" alt="QuestSpot" />
         </div>
         <div className="shortcuts">
@@ -73,12 +93,9 @@ const Sidebar = (props) => {
           <Link className={`shortcut-item ${props.location.pathname === '/profiles/' ? 'selected' : 'not-selected'}`} to="/profiles/">
             <i className="fas fa-search"></i>
           </Link>
-        </div>
-      </Headroom>
-    </div>
+*/
 
-  )
-}
+
 const mapStateToProps = (state) => {
   return {
     notification: state.notification,
