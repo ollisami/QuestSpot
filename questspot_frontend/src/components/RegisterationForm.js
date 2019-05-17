@@ -6,6 +6,8 @@ import { useLastLocation } from 'react-router-last-location'
 import ReactTags from 'react-tag-autocomplete'
 import ScoopedBoxFrame from './ScoopedBoxFrame'
 
+import ImageUpload from './ImageUpload'
+
 import tagService from '../services/tags'
 import profileService from '../services/profiles'
 import loginService from '../services/login'
@@ -21,7 +23,7 @@ import '../styles/RegisterationForm.css'
 const RegisterationForm = (props) => {
 
   const [state, setState]  = useState(0)
-  const states = ['Type', 'UserInfo', 'Location', 'ProfileInfo']
+  const states = ['Type', 'UserInfo', 'Location',  'ImageUpload', 'ProfileInfo']
   const [type, setType]  = useState('')
 
   const [username, setUsername]  = useState('')
@@ -34,9 +36,10 @@ const RegisterationForm = (props) => {
   const [city, setCity]  = useState('')
   const [country, setCountry]  = useState('')
 
+  const [ pictures, setPictures ] = useState([])
+
   const [description, setDescription]  = useState('')
   const [tags, setTags]  = useState([])
-
   const [suggestions, setSuggestions] = useState([])
 
   const previousUrl = useLastLocation() ? useLastLocation() : '/'
@@ -140,6 +143,11 @@ const RegisterationForm = (props) => {
     else  props.setNotification('Please fill all required fields')
   }
 
+  const validateImages = () => {
+    if (pictures.length > 0) setNextState()
+    else  props.setNotification('Please add images')
+  }
+
   const backgroundDiv = (child) => {
     return (
       <div className="bg-image-container">
@@ -154,20 +162,21 @@ const RegisterationForm = (props) => {
     )
   }
 
-  const typeForm = () => {
+
+  const TypeForm = () => {
     if (states[state] !== 'Type') return null
 
     return (
-      <div className="type-button-container">
+    <div className="type-button-container">
         <div className='type-button' onClick={() => setType('Artist')}>
-          <Image src={artistBG} className="type-button-image" alt="Artist" fluid/>
-          <p className="artist">Artist</p>
-          <div className="type-button-overlay" />
+            <Image src={artistBG} className="type-button-image" alt="Artist" fluid/>
+            <p className="artist">Artist</p>
+            <div className="type-button-overlay" />
         </div>
         <div className='type-button' onClick={() => setType('Studio')}>
-          <Image src={studioBG} className="type-button-image" alt="Studio" fluid/>
-          <p className="studio">Studio</p>
-          <div className="type-button-overlay" />
+            <Image src={studioBG} className="type-button-image" alt="Studio" fluid/>
+            <p className="studio">Studio</p>
+            <div className="type-button-overlay" />
         </div>
         {type && <ScoopedBoxFrame 
             id='submit' 
@@ -177,15 +186,15 @@ const RegisterationForm = (props) => {
             type="box"
             children = {
               <div className="button-label">
-               <p>Next</p> 
+                <p>Next</p> 
               </div>
             }
-          />}
-      </div>
+            />}
+    </div>
     )
   }
 
-  const userInfoForm = () => {
+  const UserInfoForm = () => {
     if (states[state] !== 'UserInfo') return null
 
     return (
@@ -245,6 +254,7 @@ const RegisterationForm = (props) => {
       )
     )
   }
+
 
   const locationForm = () => {
     if (states[state] !== 'Location') return null
@@ -307,6 +317,18 @@ const RegisterationForm = (props) => {
     )
   }
 
+  const addPictures = (newPictures) => {
+    setPictures(newPictures)
+    validateImages()
+  }
+
+  const imageUpload = () => {
+    if (states[state] !== 'ImageUpload') return null
+    return (
+      <ImageUpload addPictures = {addPictures} />
+    )
+  }
+
   const profileInfoForm = () => {
     if (states[state] !== 'ProfileInfo') return null
 
@@ -364,9 +386,10 @@ const RegisterationForm = (props) => {
 
   return (
     <div className="registeration-form">
-      {typeForm()}
-      {userInfoForm()}
+      {TypeForm()}  
+      {UserInfoForm()}
       {locationForm()}
+      {imageUpload()}
       {profileInfoForm()}
       {registerationDone &&  <Redirect to={previousUrl}/>}
     </div>

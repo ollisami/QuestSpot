@@ -10,6 +10,7 @@ const loginRouter    = require('./controllers/login')
 const profilesRouter = require('./controllers/profiles')
 const tagsRouter     = require('./controllers/tags')
 const newsRouter     = require('./controllers/news')
+const imagesRouter   = require('./controllers/images')
 
 logger.info('connecting to', config.MONGODB_URI)
 
@@ -27,5 +28,6 @@ app.use('/api/login', loginRouter)
 app.use('/api/profiles', profilesRouter)
 app.use('/api/tags', tagsRouter)
 app.use('/api/news', newsRouter)
+app.use('/api/images', imagesRouter)
 
 module.exports = app
