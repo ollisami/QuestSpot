@@ -12,6 +12,7 @@ import { setShowLogin } from '../reducers/loginReducer'
 
 import logo from '../resources/logo.png'
 import '../styles/Sidebar.css'
+import '../styles/Header.css'
 
 const Sidebar = (props) => {
   const { user } = props
@@ -61,9 +62,9 @@ const Sidebar = (props) => {
           Search
         </Link>
       </Menu>
-      <Headroom >
-        <HeaderMenu props={props} alt={true} />
-      </Headroom>
+
+      <HeaderMenu props={props} />
+
     </div>
 
   )
@@ -71,42 +72,47 @@ const Sidebar = (props) => {
 
 const HeaderMenu = ({ props, alt }) => {
   if (alt) return (
-    <div className='headerBoxAlt' height='5em'>
-      <svg id='headerBack' width='100%' height='5em'>
-        <rect height='100%' width='100%' fill='#436151' />
-        <rect height='4.8em' x='15%' width='70%' fill='#f0f0db' />
-        <rect height='4.8em' width='100%' fill='#436151' y='-.2em' />
-      </svg>
+    <Headroom>
+      <div className='headerBoxAlt' height='5em'>
 
-      <img src={logo} className='app-logo' alt="GuestSpot" />
-      <div className="shortcuts">
-        <Link className={`shortcut-item ${props.location.pathname === '/' ? 'selected' : 'not-selected'}`} to="/">
-          <i className="far fa-newspaper"></i>
-        </Link>
+        <svg id='headerBack' width='100%' height='5em'>
+          <rect height='100%' width='100%' fill='#436151' />
+          <rect height='4.8em' x='15%' width='70%' fill='#f0f0db' />
+          <rect height='4.8em' width='100%' fill='#436151' y='-.2em' />
+        </svg>
 
-        <Link className={`shortcut-item ${props.location.pathname === '/profiles/' ? 'selected' : 'not-selected'}`} to="/profiles/">
-          <i className="fas fa-search"></i>
-        </Link>
+        <img src={logo} className='app-logo' alt="GuestSpot" />
+        <div className="shortcuts">
+          <Link className={`shortcut-item ${props.location.pathname === '/' ? 'selected' : 'not-selected'}`} to="/">
+            <i className="far fa-newspaper"></i>
+          </Link>
+
+          <Link className={`shortcut-item ${props.location.pathname === '/profiles/' ? 'selected' : 'not-selected'}`} to="/profiles/">
+            <i className="fas fa-search"></i>
+          </Link>
+        </div>
+
+        <svg id='headerFront' width='100%' height='5em'>
+          <mask id='maskBack' fill='#fff'>
+            <rect id='boxBack' width='100%' height='4.8em' />
+            <ellipse id='ellBack' fill='#000' cx='50%' cy='100%' rx='6.3em' ry='4.5em' />
+          </mask>
+          <use href='#boxBack' mask='url(#maskBack)' fill='#f0f0db' />
+
+          <mask id='maskFront' fill='#fff'>
+            <rect id='boxFront' width='100%' height='4.8em' />
+            <ellipse id='ellFront' fill='#000' cx='50%' cy='100%' rx='6.5em' ry='4.7em' />
+          </mask>
+          <use href='#boxFront' mask='url(#maskFront)' fill='#436151' />
+        </svg>
+
       </div>
-
-      <svg id='headerFront' width='100%' height='5em'>
-        <mask id='maskBack' fill='#fff'>
-          <rect id='boxBack' width='100%' height='4.8em' />
-          <ellipse id='ellBack' fill='#000' cx='50%' cy='100%' rx='6.3em' ry='4.5em' />
-        </mask>
-        <use href='#boxBack' mask='url(#maskBack)' fill='#f0f0db' />
-
-        <mask id='maskFront' fill='#fff'>
-          <rect id='boxFront' width='100%' height='4.8em' />
-          <ellipse id='ellFront' fill='#000' cx='50%' cy='100%' rx='6.5em' ry='4.7em' />
-        </mask>
-        <use href='#boxFront' mask='url(#maskFront)' fill='#436151' />
-      </svg>
-    </div>
+    </Headroom>
   )
 
 
   return (
+    <Headroom>
     <div className='headerBox' >
       <svg width='100%' height='5em'>
         <rect height='100%' width='100%' fill='#f0f0db' />
@@ -116,8 +122,18 @@ const HeaderMenu = ({ props, alt }) => {
         <rect id='boxFront' width='100%' height='50%' />
         <ellipse id='ellFront' cx='50%' cy='30%' rx='6.8em' ry='70%' />
       </svg>
+      <div className="shortcuts">
+          <Link className={`shortcut-item ${props.location.pathname === '/' ? 'selected' : 'not-selected'}`} to="/">
+            <i className="far fa-newspaper"></i>
+          </Link>
+
+          <Link className={`shortcut-item ${props.location.pathname === '/profiles/' ? 'selected' : 'not-selected'}`} to="/profiles/">
+            <i className="fas fa-search"></i>
+          </Link>
+        </div>
       <img src={logo} className='app-logo' alt="GuestSpot" />
     </div>
+    </Headroom>
   )
 }
 
