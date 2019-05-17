@@ -7,7 +7,7 @@ import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
 import FilePondPluginImageCrop from 'filepond-plugin-image-crop'
 import FilePondPluginImageResize from 'filepond-plugin-image-resize'
 
-
+import '../styles/ImageUpload.css'
 import 'filepond/dist/filepond.min.css'
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'
 
@@ -23,15 +23,6 @@ const ImageUpload = (props) => {
   const handleSubmit = async () => {
     const files = await pond.processFiles()
     props.addPictures(files.map(file => file.serverId))
-    /*.then(() => {
-        console.log("processing done")
-        props.validate()
-      }, (reason) => {
-        console.log("Processing error")
-      })*/
-      //props.validate()
-      //props.validate()
-      //console.log(files)
   }
 
 
@@ -48,8 +39,8 @@ const ImageUpload = (props) => {
             imageResizeTargetHeight={1080}
             imageResizeUpscale={false}
             instantUpload = {false}
-            server = "/api/images"
-            //onprocessfile = {(error, file) => props.addPicture(file.serverId)}    
+            labelIdle = '<span class="filepond--label-action"> Select images </span>'
+            server = "/api/images" 
         />
         <ScoopedBoxFrame 
             id='submit' 

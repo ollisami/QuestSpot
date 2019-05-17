@@ -100,7 +100,8 @@ const RegisterationForm = (props) => {
       city: city,
       country: country,
       description: description,
-      tags: tagList
+      tags: tagList,
+      images: pictures
     }
     try {
       const newProfile = await profileService.create(profileObject)
@@ -141,11 +142,6 @@ const RegisterationForm = (props) => {
     if (address && postalcode && city && country)
       setNextState()
     else  props.setNotification('Please fill all required fields')
-  }
-
-  const validateImages = () => {
-    if (pictures.length > 0) setNextState()
-    else  props.setNotification('Please add images')
   }
 
   const backgroundDiv = (child) => {
@@ -318,8 +314,12 @@ const RegisterationForm = (props) => {
   }
 
   const addPictures = (newPictures) => {
+    if(newPictures.length === 0) {
+      props.setNotification('Please add images')
+      return
+    }
     setPictures(newPictures)
-    validateImages()
+    setNextState()
   }
 
   const imageUpload = () => {

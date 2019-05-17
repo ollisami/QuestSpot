@@ -23,7 +23,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true })
   })
 
 app.use(cors())
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '10mb', extended: true}))
 app.use('/api/login', loginRouter)
 app.use('/api/profiles', profilesRouter)
 app.use('/api/tags', tagsRouter)
