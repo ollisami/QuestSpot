@@ -5,37 +5,7 @@
   background: #375244;
 }
 
-.shortcut-item {
-  width: 50%;
-  font-size: 1.5em;
-  text-align: center;
-  background-color: #436151;
-  border-left: px solid #f0f0db;
-  border-right: 0px solid #f0f0db;
-  transition: all 0.3s ease 0s;
-}
 
-.shortcut-item i {
-  transform: translate(0px, 1.2em)
-}
-
-.far.fa-newspaper {
-  top: 1em
-}
-
-.shortcut-item.selected {
-  background-color: #f37863;
-  color: white;
-}
-
-.shortcuts {
-  position: absolute;
-  width: 83%;
-  left: 8.5%;
-  height: 4.6em;
-  display: flex;
-  justify-content: space-between;
-}
 
 .app-logo {
   position: absolute;
@@ -66,6 +36,37 @@
   width: 90%
 }
 
+.headerBox .shortcut-item {
+  width: 30%;
+  font-size: 1.6em;
+  text-align: center;
+  background-color: transparent;
+  border-left: px solid #f0f0db;
+  border-right: 0px solid #f0f0db;
+  transition: all 0.3s ease 0s;
+}
+
+.headerBox .shortcut-item i {
+  transform: translate(0px, 35%)
+}
+
+.headerBox .shortcut-item.selected {
+  background-color: transparent;
+  color: darkgrey
+}
+
+.headerBox .shortcuts {
+  top: 15%;
+  position: absolute;
+  width: 70%;
+  left: 15%;
+  height: 3em;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*alternative header design*/
+
 .headerBoxAlt {
   width: 100%;
   height: 5em
@@ -87,4 +88,34 @@
 #headerFront {
   position: absolute;
   pointer-events: none;
+}
+.headerBoxAlt .shortcut-item {
+  width: 50%;
+  font-size: 1.5em;
+  text-align: center;
+  background-color: #436151;
+  border-left: px solid #f0f0db;
+  border-right: 0px solid #f0f0db;
+  transition: all 0.3s ease 0s;
+}
+
+.headerBoxAlt .shortcut-item i {
+  transform: translate(0px, 1.0em)
+}
+
+
+
+.headerBoxAlt .shortcut-item.selected {
+  background-color: #f37863;
+  color: white;
+  
+}
+
+.headerBoxAlt .shortcuts {
+  position: absolute;
+  width: 83%;
+  left: 8.5%;
+  height: 4.6em;
+  display: flex;
+  justify-content: space-between;
 }
