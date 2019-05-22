@@ -63,13 +63,14 @@ const Sidebar = (props) => {
         </Link>
       </Menu>
 
-      <HeaderMenu props={props} />
+      <HeaderMenu props={props} alt={3} />
 
     </div>
 
   )
 }
 
+//give the alt prop a value if you want to use the alt header
 const HeaderMenu = ({ props, alt }) => {
   if (alt) return (
     <Headroom>

@@ -100,14 +100,14 @@
 }
 
 .headerBoxAlt .shortcut-item i {
-  transform: translate(0px, 1.0em)
+  transform: translate(0px, 1.3em)
 }
 
 
 
 .headerBoxAlt .shortcut-item.selected {
-  background-color: #f37863;
-  color: white;
+  background-color: transparent;
+  color: darkgray;
   
 }
 
