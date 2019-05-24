@@ -7,6 +7,10 @@ import ReactTags from 'react-tag-autocomplete'
 import ScoopedBoxFrame from './ScoopedBoxFrame'
 
 import ImageUpload from './ImageUpload'
+import UserTypeForm from './UserTypeForm'
+import UserInfoForm from './UserInfoForm'
+import UserLocationFrom from './UserLocationForm'
+import UserProfileInfoForm from './UserProfileInfoForm'
 
 import tagService from '../services/tags'
 import profileService from '../services/profiles'
@@ -158,161 +162,6 @@ const RegisterationForm = (props) => {
     )
   }
 
-
-  const TypeForm = () => {
-    if (states[state] !== 'Type') return null
-
-    return (
-    <div className="type-button-container">
-        <div className='type-button' onClick={() => setType('Artist')}>
-            <Image src={artistBG} className="type-button-image" alt="Artist" fluid/>
-            <p className="artist">Artist</p>
-            <div className="type-button-overlay" />
-        </div>
-        <div className='type-button' onClick={() => setType('Studio')}>
-            <Image src={studioBG} className="type-button-image" alt="Studio" fluid/>
-            <p className="studio">Studio</p>
-            <div className="type-button-overlay" />
-        </div>
-        {type && <ScoopedBoxFrame 
-            id='submit' 
-            radius={20}
-            primaryColor="#436151"
-            clickEvent={validateType}
-            type="box"
-            children = {
-              <div className="button-label">
-                <p>Next</p> 
-              </div>
-            }
-            />}
-    </div>
-    )
-  }
-
-  const UserInfoForm = () => {
-    if (states[state] !== 'UserInfo') return null
-
-    return (
-      backgroundDiv(
-        <div className="input-form">
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="username"
-            defaultValue={username ? username : ''}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="password"
-            placeholder="Password"
-            defaultValue={password ? password : ''}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="Name"
-            defaultValue={name ? name : ''}
-            onChange={(event) => setName(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="email"
-            placeholder="Email"
-            defaultValue={email ? email : ''}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          <ScoopedBoxFrame 
-            id='next' 
-            radius={20}
-            primaryColor="#436151"
-            clickEvent={validateUserInfo}
-            type="box"
-            children = {
-              <div className="button-label">
-               <p>Next</p> 
-              </div>
-            }/>
-          <ScoopedBoxFrame 
-            id='back' 
-            radius={20}
-            primaryColor="#f37863"
-            clickEvent={setPrevState}
-            type="box"
-            children = {
-              <div className="button-label">
-               <p>Back</p> 
-              </div>
-            }/>
-        </div>
-      )
-    )
-  }
-
-
-  const locationForm = () => {
-    if (states[state] !== 'Location') return null
-
-    return (
-      backgroundDiv(
-        <div className="input-form">
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="Address"
-            defaultValue={address ? address : ''}
-            onChange={(event) => setAddress(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="Postal Code"
-            defaultValue={postalcode ? postalcode : ''}
-            onChange={(event) => setPostalcode(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="City"
-            defaultValue={city ? city : ''}
-            onChange={(event) => setCity(event.target.value)}
-          />
-          <FormControl
-            className="registeration-input"
-            type="text"
-            placeholder="Country"
-            defaultValue={country ? country : ''}
-            onChange={(event) => setCountry(event.target.value)}
-          />
-          <ScoopedBoxFrame 
-            id='next' 
-            radius={20}
-            primaryColor="#436151"
-            clickEvent={validateLocation}
-            type="box"
-            children = {
-              <div className="button-label">
-               <p>Next</p> 
-              </div>
-            }/>
-          <ScoopedBoxFrame 
-            id='back' 
-            radius={20}
-            primaryColor="#f37863"
-            clickEvent={setPrevState}
-            type="box"
-            children = {
-              <div className="button-label">
-               <p>Back</p> 
-              </div>
-            }/>
-        </div>
-      )
-    )
-  }
-
   const addPictures = (newPictures) => {
     if(newPictures.length === 0) {
       props.setNotification('Please add images')
@@ -329,68 +178,60 @@ const RegisterationForm = (props) => {
     )
   }
 
-  const profileInfoForm = () => {
-    if (states[state] !== 'ProfileInfo') return null
 
-    return (
-      backgroundDiv(
-        <div className="input-form">
-          <ReactTags
-            tags={tags}
-            suggestions={suggestions}
-            handleDelete={handleDelete.bind(this)}
-            handleAddition={handleAddition.bind(this)}
-            autofocus={false}
-            placeholder={'Add tag'}
-            addOnBlur={true}
-            allowNew={true}
-          />
-          <Form onSubmit={addProfile}>
-            <Form.Group>
-              <Form.Control
-                as="textarea"
-                rows="3"
-                placeholder="Description"
-                defaultValue={description ? description : ''}
-                onChange={(event) => setDescription(event.target.value)}
-              />
-
-            <ScoopedBoxFrame 
-              id='next' 
-              radius={20}
-              primaryColor="#436151"
-              clickEvent={addProfile}
-              type="box"
-              children = {
-                <div className="button-label">
-                <p>Next</p> 
-                </div>
-            }/>
-            <ScoopedBoxFrame 
-              id='back' 
-              radius={20}
-              primaryColor="#f37863"
-              clickEvent={setPrevState}
-              type="box"
-              children = {
-                <div className="button-label">
-                <p>Back</p> 
-                </div>
-              }/>
-            </Form.Group>
-          </Form>
-        </div>
-      )
-    )
-  }
 
   return (
     <div className="registeration-form">
-      {TypeForm()}  
-      {UserInfoForm()}
-      {locationForm()}
+      <UserTypeForm 
+        setType = {setType}
+        state = {states[state]}
+        type = {type}
+        validateType = {validateType}
+      />
+      <UserInfoForm
+        state = {states[state]}
+        username = {username}
+        setUsername = {setUsername}
+        password = {password}
+        setPassword = {setPassword}
+        name = {name}
+        setName = {setName}
+        email = {email}
+        setEmail = {setEmail}
+        validateUserInfo = {validateUserInfo}
+        setPrevState = {setPrevState}
+        backgroundDiv = {backgroundDiv}
+      />
+
+      <UserLocationFrom
+        state = {states[state]}
+        address = {address}
+        setAddress = {setAddress}
+        postalCode = {postalcode}
+        setPostalcode = {setPostalcode}
+        city = {city}
+        setCity = {setCity}
+        country = {country}
+        setCountry = {setCountry}
+        validateLocation = {validateLocation}
+        setPrevState = {setPrevState}
+        backgroundDiv = {backgroundDiv}
+      />
+      
       {imageUpload()}
-      {profileInfoForm()}
+      
+      <UserProfileInfoForm
+        state = {states[state]}
+        tags = {tags}
+        suggestions = {suggestions}
+        handleDelete = {handleDelete}
+        handleAddition = {handleAddition}
+        addProfile = {addProfile}
+        description = {description}
+        setDescription = {setDescription}
+        setPrevState = {setPrevState}
+        backgroundDiv = {backgroundDiv}
+      />
       {registerationDone &&  <Redirect to={previousUrl}/>}
     </div>
   )
