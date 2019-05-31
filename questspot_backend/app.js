@@ -22,6 +22,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true })
     logger.error('error connection to MongoDB:', error.message)
   })
 
+app.use(express.static('build'))
 app.use(cors())
 app.use(bodyParser.json({limit: '10mb', extended: true}))
 app.use('/api/login', loginRouter)

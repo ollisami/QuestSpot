@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Form, FormControl, Image } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 import { useLastLocation } from 'react-router-last-location'
-import ReactTags from 'react-tag-autocomplete'
-import ScoopedBoxFrame from './ScoopedBoxFrame'
 
 import ImageUpload from './ImageUpload'
 import UserTypeForm from './UserTypeForm'
@@ -19,8 +16,6 @@ import loginService from '../services/login'
 import { setNotification } from '../reducers/notificationReducer'
 import { userChange } from '../reducers/userReducer'
 
-import artistBG from '../resources/artist_bg.jpg'
-import studioBG from '../resources/studio_bg.jpg'
 import formBG from '../resources/form_bg.jpg'
 import '../styles/RegisterationForm.css'
 
@@ -217,7 +212,7 @@ const RegisterationForm = (props) => {
         setPrevState = {setPrevState}
         backgroundDiv = {backgroundDiv}
       />
-      
+
       {imageUpload()}
       
       <UserProfileInfoForm
