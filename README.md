@@ -1,6 +1,7 @@
 # QuestSpot
 
-**Heroku demo:** https://polar-falls-98239.herokuapp.com/
+**Heroku demo:** https://polar-falls-98239.herokuapp.com/  
+Huom! Kannattaa käyttää selaimen mobiilinäkymää
 
 
 QuestSpot FullStack-projekti  
