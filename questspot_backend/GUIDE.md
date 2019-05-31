@@ -2,7 +2,7 @@
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run watch`
 
 Runs the app in the development mode.<br>
 
